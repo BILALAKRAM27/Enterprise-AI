@@ -1,8 +1,8 @@
-import { View, ScrollView, RefreshControl } from 'react-native';
+import { View, ScrollView, RefreshControl, Platform, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { Typography } from '../../components/Typography';
-import { Card, CardHeader } from '../../components/Card';
+import { Card } from '../../components/Card';
 import { Button } from '../../components/Button';
 import { useAppSelector } from '../../hooks/store';
 import { documentService } from '../../services/document';
@@ -29,61 +29,128 @@ export default function DashboardScreen() {
     setRefreshing(true);
     await Promise.all([refetchDocs(), refetchChats()]);
     setRefreshing(false);
-  }, []);
+  }, [refetchDocs, refetchChats]);
 
   const processingDocs = documents?.filter(d => d.status === 'processing').length || 0;
   const readyDocs = documents?.filter(d => d.status === 'ready').length || 0;
 
   return (
-    <ScrollView 
-      className="flex-1 bg-slate-50 dark:bg-slate-900"
-      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    <ScrollView
+      className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]"
+      contentContainerStyle={{ flexGrow: 1 }}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          tintColor="#3652E3"
+          colors={["#3652E3"]}
+        />
+      }
     >
-      <View className="p-6 pt-12">
-        <Typography variant="h1" weight="bold" className="mb-2 text-slate-900 dark:text-white">
-          Welcome back
-        </Typography>
-        <Typography variant="body" color="muted" className="mb-8">
-          {user?.email}
-        </Typography>
+      <View className="mx-auto w-full max-w-[1120px] px-6 pb-12 pt-16 md:px-8">
+        {/* Header Section */}
+        <View className="mb-8 flex-row items-center justify-between">
+          <View className="flex-1 pr-4">
+            <Typography variant="h1" weight="bold" className="text-[#18181B] dark:text-[#FAFAFA] tracking-tight">
+              Welcome back
+            </Typography>
+            <Typography variant="body" color="muted" className="mt-1 font-mono text-xs tracking-wide">
+              {user?.email}
+            </Typography>
+          </View>
+          <TouchableOpacity
+            onPress={() => router.push('/(tabs)/profile')}
+            activeOpacity={0.7}
+            className="h-11 w-11 items-center justify-center rounded-full bg-[#EEF1FF] border border-[#E4E4E7] dark:bg-[#161B33] dark:border-[#3F3F46]"
+          >
+            <Feather name="user" size={18} color="#3652E3" />
+          </TouchableOpacity>
+        </View>
 
-        <View className="mb-8 flex-row flex-wrap justify-between">
-          <Card className="w-[48%] mb-4">
-            <View className="mb-2 flex-row items-center justify-between">
-              <Typography variant="label" color="muted">Total Documents</Typography>
-              <Feather name="file-text" size={16} color="#6366f1" />
+        {/* AI Suggestion Card (Signal / Teal Spec) */}
+        <View className="mb-8 overflow-hidden rounded-2xl bg-[#E6FBF9] border border-[#B9EFEA] p-5 dark:bg-[#0E2624] dark:border-[#1B4C48]">
+          <View className="flex-row items-start gap-3">
+            <View className="rounded-lg bg-[#0EA5A5]/10 p-2 dark:bg-[#2DD4C6]/10">
+              <Feather name="sparkles" size={18} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
             </View>
-            <Typography variant="h2" weight="bold">{documents?.length || 0}</Typography>
-            <View className="mt-2 flex-row space-x-2 gap-2">
-              <Typography variant="caption" color="success">{readyDocs} ready</Typography>
-              {processingDocs > 0 && <Typography variant="caption" color="warning">{processingDocs} processing</Typography>}
+            <View className="flex-1">
+              <Typography variant="body" weight="semibold" className="text-[#0B8383] dark:text-[#5CE8DB]">
+                AI Suggested Action
+              </Typography>
+              <Typography variant="caption" className="mt-1 text-[#0ea5a5] dark:text-[#2dd4c6]/80 leading-relaxed">
+                {documents && documents.length > 0
+                  ? `You have ${documents.length} indexed documents. Start a chat session to synthesize insights instantly.`
+                  : "Upload your first PDF or TXT files to establish your workspace's baseline AI knowledge structure."
+                }
+              </Typography>
+            </View>
+          </View>
+        </View>
+
+        {/* Statistics Grid */}
+        <View className="mb-8 flex-row flex-wrap gap-4 md:flex-nowrap">
+          <Card className="flex-1 min-w-[140px] border border-[#E4E4E7] bg-white p-5 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-2xl">
+            <View className="mb-3 flex-row items-center justify-between">
+              <Typography variant="label" color="muted" className="text-xs uppercase tracking-wider font-semibold">Documents</Typography>
+              <View className="rounded-lg bg-[#EEF1FF] p-2 dark:bg-[#161B33]">
+                <Feather name="file-text" size={16} color="#3652E3" />
+              </View>
+            </View>
+            <Typography variant="h2" weight="bold" className="text-[#18181B] dark:text-[#FAFAFA] font-display text-3xl">
+              {documents?.length || 0}
+            </Typography>
+            <View className="mt-3 flex-row flex-wrap items-center gap-x-3 gap-y-1">
+              <View className="flex-row items-center gap-1">
+                <View className="h-1.5 w-1.5 rounded-full bg-[#1B8A3D] dark:bg-[#4ADE80]" />
+                <Typography variant="caption" className="text-[#1B8A3D] dark:text-[#4ADE80] font-mono text-[11px]">{readyDocs} ready</Typography>
+              </View>
+              {processingDocs > 0 && (
+                <View className="flex-row items-center gap-1">
+                  <View className="h-1.5 w-1.5 rounded-full bg-[#B4690E] dark:bg-[#F5A623]" />
+                  <Typography variant="caption" className="text-[#B4690E] dark:text-[#F5A623] font-mono text-[11px]">{processingDocs} processing</Typography>
+                </View>
+              )}
             </View>
           </Card>
 
-          <Card className="w-[48%] mb-4">
-            <View className="mb-2 flex-row items-center justify-between">
-              <Typography variant="label" color="muted">Total Chats</Typography>
-              <Feather name="message-square" size={16} color="#6366f1" />
+          <Card className="flex-1 min-w-[140px] border border-[#E4E4E7] bg-white p-5 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-2xl">
+            <View className="mb-3 flex-row items-center justify-between">
+              <Typography variant="label" color="muted" className="text-xs uppercase tracking-wider font-semibold">Conversations</Typography>
+              <View className="rounded-lg bg-[#EEF1FF] p-2 dark:bg-[#161B33]">
+                <Feather name="message-square" size={16} color="#3652E3" />
+              </View>
             </View>
-            <Typography variant="h2" weight="bold">{chats?.length || 0}</Typography>
+            <Typography variant="h2" weight="bold" className="text-[#18181B] dark:text-[#FAFAFA] font-display text-3xl">
+              {chats?.length || 0}
+            </Typography>
+            <Typography variant="caption" color="muted" className="mt-3 font-mono text-[11px]">Active workspaces</Typography>
           </Card>
         </View>
 
-        <Typography variant="h3" weight="semibold" className="mb-4">Quick Actions</Typography>
-        <View className="space-y-4 gap-4">
-          <Button 
-            label="Upload Document" 
-            icon={<Feather name="upload" size={20} color="#fff" />}
-            onPress={() => router.push('/(tabs)/documents')}
-            size="lg"
-          />
-          <Button 
-            label="New Chat" 
-            variant="outline"
-            icon={<Feather name="plus" size={20} color="#6366f1" />}
-            onPress={() => router.push('/(tabs)/chat' as any)}
-            size="lg"
-          />
+        {/* Quick Actions Container */}
+        <Typography variant="h3" weight="semibold" className="mb-4 text-[#18181B] dark:text-[#FAFAFA] tracking-tight">
+          Quick Actions
+        </Typography>
+        <View className="flex-col gap-3 md:flex-row">
+          <View className="flex-1">
+            <Button
+              label="Upload Document"
+              icon={<Feather name="upload" size={18} color="#fff" />}
+              onPress={() => router.push('/(tabs)/documents')}
+              size="lg"
+              className="bg-[#3652E3] active:bg-[#2A3FB8] dark:bg-[#6E85FF] dark:active:bg-[#8C9AFF] h-12 rounded-xl"
+            />
+          </View>
+          <View className="flex-1">
+            <Button
+              label="New Conversation"
+              variant="outline"
+              icon={<Feather name="plus" size={18} color="#3652E3" />}
+              onPress={() => router.push('/(tabs)/chat' as any)}
+              size="lg"
+              className="border-[#3652E3] text-[#3652E3] dark:border-[#6E85FF] dark:text-[#6E85FF] h-12 rounded-xl"
+            />
+          </View>
         </View>
       </View>
     </ScrollView>

@@ -33,7 +33,23 @@ class Settings(BaseSettings):
     QDRANT_PORT: int = 6333
     QDRANT_API_KEY: Optional[str] = None
     
-    GEMINI_API_KEY: str = "AQ.Ab8RN6IrNo6m6N2cmiH_sfiF_wTakfKVykWPks2NEYyWHttJMg"
+    GEMINI_API_KEY: Optional[str] = None  # Set in .env — must be a Gemini API key from https://aistudio.google.com/apikey
+
+    @field_validator("GEMINI_API_KEY", mode="before")
+    @classmethod
+    def validate_gemini_key(cls, v: Optional[str]) -> Optional[str]:
+        if not v:
+            return None
+        v = v.strip()  # strip any accidental leading/trailing whitespace from .env
+        if v and not v.startswith("AIza"):
+            import warnings
+            warnings.warn(
+                f"GEMINI_API_KEY does not look like a valid Google API key "
+                f"(expected 'AIza...' prefix, got '{v[:6]}...'). "
+                "Get a valid key at https://aistudio.google.com/apikey",
+                stacklevel=2,
+            )
+        return v if v else None
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True, extra="ignore")
 

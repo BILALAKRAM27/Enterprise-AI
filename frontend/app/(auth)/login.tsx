@@ -49,68 +49,77 @@ export default function LoginScreen() {
   };
 
   return (
-    <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
-      className="flex-1 bg-slate-50 dark:bg-slate-900"
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]"
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24 }}>
-        <View className="mb-8">
-          <Typography variant="h1" weight="bold" className="mb-2 text-indigo-600 dark:text-indigo-400">
-            Enterprise AI
-          </Typography>
-          <Typography variant="body" color="muted">
-            Sign in to access your knowledge base and intelligent chat.
-          </Typography>
-        </View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View className="mx-auto w-full max-w-[440px] bg-white border border-[#E4E4E7] p-8 dark:bg-[#1C1E23] dark:border-[#3F3F46] rounded-2xl shadow-sm">
+          <View className="mb-8">
+            <Typography variant="h1" weight="bold" className="text-[#3652E3] dark:text-[#6E85FF] tracking-tight">
+              Enterprise AI
+            </Typography>
+            <Typography variant="body" color="muted" className="mt-2 text-sm leading-relaxed">
+              Sign in to access your knowledge base and intelligent chat.
+            </Typography>
+          </View>
 
-        <View className="space-y-4">
-          <Controller
-            control={control}
-            name="email"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                label="Email Address"
-                placeholder="you@company.com"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                error={errors.email?.message}
-              />
-            )}
-          />
+          <View className="gap-y-4">
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  label="Email Address"
+                  placeholder="you@company.com"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  error={errors.email?.message}
+                  className="bg-[#FAFAFA] dark:bg-[#0B0D12] h-12 px-4 rounded-xl text-base text-[#18181B] dark:text-[#FAFAFA]"
+                />
+              )}
+            />
 
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                label="Password"
-                placeholder="••••••••"
-                secureTextEntry
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                error={errors.password?.message}
-              />
-            )}
-          />
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  label="Password"
+                  placeholder="••••••••"
+                  secureTextEntry
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                  error={errors.password?.message}
+                  onSubmitEditing={handleSubmit(onSubmit)}
+                  className="bg-[#FAFAFA] dark:bg-[#0B0D12] h-12 px-4 rounded-xl text-base text-[#18181B] dark:text-[#FAFAFA]"
+                />
+              )}
+            />
 
-          <Button 
-            label="Sign In" 
-            size="lg" 
-            className="mt-6" 
-            onPress={handleSubmit(onSubmit)} 
-            loading={loading} 
-          />
+            <Button
+              label="Sign In"
+              size="lg"
+              className="mt-4 bg-[#3652E3] active:bg-[#2A3FB8] h-12 rounded-xl"
+              onPress={handleSubmit(onSubmit)}
+              loading={loading}
+              disabled={loading}
+            />
 
-          <Button 
-            label="Create an account" 
-            variant="ghost" 
-            className="mt-2" 
-            onPress={() => router.push('/(auth)/register')} 
-          />
+            <Button
+              label="Create an account"
+              variant="ghost"
+              className="mt-1 h-12 rounded-xl"
+              onPress={() => router.push('/(auth)/register')}
+            />
+          </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

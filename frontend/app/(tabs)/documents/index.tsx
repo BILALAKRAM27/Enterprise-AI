@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, FlatList, RefreshControl, Alert } from 'react-native';
+import { View, FlatList, RefreshControl, Alert, TouchableOpacity } from 'react-native';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import * as DocumentPicker from 'expo-document-picker';
 import { documentService } from '../../../services/document';
@@ -39,7 +39,6 @@ export default function DocumentsScreen() {
 
       await documentService.uploadDocument(file.uri, file.name, file.mimeType || 'application/octet-stream');
       queryClient.invalidateQueries({ queryKey: ['documents'] });
-      Alert.alert('Success', 'Document uploaded successfully');
     } catch (error) {
       Alert.alert('Upload Failed', 'There was an error uploading your document.');
     } finally {
@@ -47,79 +46,104 @@ export default function DocumentsScreen() {
     }
   };
 
-  const renderItem = ({ item }: { item: any }) => (
-    <Card className="mb-3">
-      <View className="flex-row items-start justify-between">
-        <View className="flex-1 flex-row items-center gap-3">
-          <View className="rounded-lg bg-indigo-100 p-2 dark:bg-indigo-900/30">
-            <Feather name="file-text" size={24} color="#6366f1" />
-          </View>
-          <View className="flex-1">
-            <Typography variant="body" weight="medium" numberOfLines={1} className="mb-1">
-              {item.filename}
-            </Typography>
-            <Typography variant="caption" color="muted">
-              {format(new Date(item.uploaded_at), 'MMM dd, yyyy HH:mm')}
-            </Typography>
-          </View>
-        </View>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          icon={<Feather name="trash-2" size={20} color="#ef4444" />} 
-          onPress={() => {
-            Alert.alert('Delete Document', 'Are you sure you want to delete this document?', [
-              { text: 'Cancel', style: 'cancel' },
-              { text: 'Delete', style: 'destructive', onPress: () => deleteMutation.mutate(item.id) }
-            ]);
-          }}
-        />
-      </View>
-      <View className="mt-3 flex-row items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-800">
-        <Badge 
-          label={item.status.toUpperCase()} 
-          variant={item.status === 'ready' ? 'success' : item.status === 'failed' ? 'error' : 'warning'} 
-        />
-        <Typography variant="caption" color="muted" className="uppercase tracking-wider">
-          {item.content_type || 'PDF'}
-        </Typography>
-      </View>
-    </Card>
-  );
+  const getFileIconColors = (type?: string) => {
+    const norm = (type || '').toLowerCase();
+    if (norm.includes('pdf')) return { bg: 'bg-[#FCEBEB] dark:bg-[#301213]', color: '#C2281F' };
+    if (norm.includes('word') || norm.includes('docx') || norm.includes('msword')) return { bg: 'bg-[#EAF1FE] dark:bg-[#111E33]', color: '#2563EB' };
+    return { bg: 'bg-zinc-100 dark:bg-zinc-800', color: '#71717A' };
+  };
 
-  return (
-    <View className="flex-1 bg-slate-50 p-4 pt-12 dark:bg-slate-900">
-      <View className="mb-6 flex-row items-center justify-between">
-        <Typography variant="h1" weight="bold">Documents</Typography>
-        <Button 
-          label="Upload" 
-          icon={<Feather name="upload-cloud" size={18} color="#fff" />} 
-          size="sm" 
-          onPress={handleUpload}
-          loading={uploading}
-        />
-      </View>
+  const renderItem = ({ item }: { item: any }) => {
+    const themeSpec = getFileIconColors(item.content_type || item.filename);
 
-      <FlatList
-        data={documents}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 24 }}
-        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
-        ListEmptyComponent={
-          !isLoading ? (
-            <View className="mt-20 items-center justify-center">
-              <View className="mb-4 rounded-full bg-slate-200 p-6 dark:bg-slate-800">
-                <Feather name="file-text" size={48} color="#94a3b8" />
-              </View>
-              <Typography variant="h3" weight="semibold" className="mb-2">No documents yet</Typography>
-              <Typography variant="body" color="muted" className="text-center">
-                Upload your first document to start building your knowledge base.
+    return (
+      <Card className="mb-3 border border-[#E4E4E7] bg-white p-4 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-2xl">
+        <View className="flex-row items-start justify-between">
+          <View className="flex-1 flex-row items-center gap-3">
+            <View className={`rounded-xl p-3 ${themeSpec.bg}`}>
+              <Feather name="file-text" size={20} color={themeSpec.color} />
+            </View>
+            <View className="flex-1">
+              <Typography variant="body" weight="medium" numberOfLines={1} className="text-[#18181B] dark:text-[#FAFAFA]">
+                {item.filename}
+              </Typography>
+              <Typography variant="caption" color="muted" className="font-mono text-xs mt-0.5">
+                {format(new Date(item.uploaded_at), 'MMM dd, yyyy HH:mm')}
               </Typography>
             </View>
-          ) : null
-        }
-      />
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            className="h-10 w-10 items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            onPress={() => {
+              Alert.alert('Delete Document', 'Are you sure you want to delete this document?', [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Delete', style: 'destructive', onPress: () => deleteMutation.mutate(item.id) }
+              ]);
+            }}
+          >
+            <Feather name="trash-2" size={18} color="#C2281F" />
+          </TouchableOpacity>
+        </View>
+
+        <View className="mt-4 flex-row items-center justify-between border-t border-[#E4E4E7] pt-3 dark:border-[#3F3F46]">
+          <Badge
+            label={item.status.toUpperCase()}
+            variant={item.status === 'ready' ? 'success' : item.status === 'failed' ? 'error' : 'warning'}
+          />
+          <Typography variant="caption" className="uppercase font-mono text-[10px] tracking-widest text-[#71717A] dark:text-[#A1A1AA]">
+            {item.content_type?.split('/')?.[1] || 'DOC'}
+          </Typography>
+        </View>
+      </Card>
+    );
+  };
+
+  return (
+    <View className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]">
+      <View className="mx-auto w-full max-w-[1120px] flex-1 px-6 pb-6 pt-16 md:px-8">
+        <View className="mb-6 flex-row items-center justify-between">
+          <Typography variant="h1" weight="bold" className="text-[#18181B] dark:text-[#FAFAFA] tracking-tight">
+            Documents
+          </Typography>
+          <Button
+            label="Upload"
+            icon={<Feather name="upload-cloud" size={16} color="#fff" />}
+            size="sm"
+            onPress={handleUpload}
+            loading={uploading}
+            className="bg-[#3652E3] active:bg-[#2A3FB8] h-10 px-4 rounded-xl"
+          />
+        </View>
+
+        <FlatList
+          data={documents}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingBottom: 32 }}
+          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor="#3652E3" />}
+          ListEmptyComponent={
+            !isLoading ? (
+              <View className="mt-20 items-center justify-center px-4">
+                <View className="mb-4 rounded-full bg-zinc-100 p-6 dark:bg-zinc-800">
+                  <Feather name="file-text" size={40} color="#A1A1AA" />
+                </View>
+                <Typography variant="h3" weight="semibold" className="mb-2 text-[#18181B] dark:text-[#FAFAFA]">
+                  No documents yet
+                </Typography>
+                <Typography variant="body" color="muted" className="text-center max-w-[280px] mb-6">
+                  Upload your first document to start building your knowledge base.
+                </Typography>
+                <Button
+                  label="Upload your first document"
+                  onPress={handleUpload}
+                  className="bg-[#3652E3] px-6"
+                />
+              </View>
+            ) : null
+          }
+        />
+      </View>
     </View>
   );
 }

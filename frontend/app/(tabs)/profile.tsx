@@ -1,4 +1,4 @@
-import { View, Alert } from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { storage } from '../../utils/storage';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAppSelector, useAppDispatch } from '../../hooks/store';
@@ -7,62 +7,80 @@ import { Typography } from '../../components/Typography';
 import { Card } from '../../components/Card';
 import { Button } from '../../components/Button';
 import { Feather } from '@expo/vector-icons';
+import { useState } from 'react';
 
 export default function ProfileScreen() {
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
-    Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
-      { text: 'Cancel', style: 'cancel' },
-      { 
-        text: 'Sign Out', 
-        style: 'destructive',
-        onPress: async () => {
-          await storage.deleteItemAsync('access_token');
-          queryClient.clear();
-          dispatch(logout()); // AuthGuard watches isAuthenticated and redirects to /(auth)/login
-        }
-      }
-    ]);
+    setIsLoggingOut(true);
+    try {
+      await storage.deleteItemAsync('access_token');
+      queryClient.clear();
+      dispatch(logout());
+    } catch (e) {
+      // Slit silent error handling to match criteria
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   return (
-    <View className="flex-1 bg-slate-50 p-4 pt-12 dark:bg-slate-900">
-      <Typography variant="h1" weight="bold" className="mb-6">Profile</Typography>
+    <ScrollView className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]">
+      <View className="mx-auto w-full max-w-[1120px] px-6 pb-12 pt-16 md:px-8">
+        <Typography variant="h1" weight="bold" className="mb-6 text-[#18181B] dark:text-[#FAFAFA] tracking-tight">
+          Profile
+        </Typography>
 
-      <Card className="mb-6 items-center py-8">
-        <View className="mb-4 rounded-full bg-indigo-100 p-4 dark:bg-indigo-900/50">
-          <Feather name="user" size={48} color="#6366f1" />
+        {/* Profile Card */}
+        <Card className="mb-6 items-center border border-[#E4E4E7] bg-white py-8 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-2xl">
+          <View className="mb-4 rounded-full bg-[#EEF1FF] p-5 dark:bg-[#161B33]">
+            <Feather name="user" size={40} color="#3652E3" />
+          </View>
+          <Typography variant="h3" weight="semibold" className="mb-1 text-[#18181B] dark:text-[#FAFAFA]">
+            {user?.email}
+          </Typography>
+          <Typography variant="body" color="muted" className="font-mono text-xs tracking-wider uppercase">
+            ID: {user?.id} • {user?.is_superuser ? 'Admin' : 'Member'}
+          </Typography>
+        </Card>
+
+        {/* Settings Action Hub */}
+        <View className="gap-3 mb-6">
+          <TouchableOpacity activeOpacity={0.7}>
+            <Card className="flex-row items-center justify-between border border-[#E4E4E7] bg-white p-4 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-xl h-12">
+              <View className="flex-row items-center gap-3">
+                <Feather name="settings" size={18} color="#71717A" />
+                <Typography variant="body" weight="medium" className="text-[#18181B] dark:text-[#FAFAFA]">App Settings</Typography>
+              </View>
+              <Feather name="chevron-right" size={16} color="#A1A1AA" />
+            </Card>
+          </TouchableOpacity>
+
+          <TouchableOpacity activeOpacity={0.7}>
+            <Card className="flex-row items-center justify-between border border-[#E4E4E7] bg-white p-4 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-xl h-12">
+              <View className="flex-row items-center gap-3">
+                <Feather name="shield" size={18} color="#71717A" />
+                <Typography variant="body" weight="medium" className="text-[#18181B] dark:text-[#FAFAFA]">Privacy & Security</Typography>
+              </View>
+              <Feather name="chevron-right" size={16} color="#A1A1AA" />
+            </Card>
+          </TouchableOpacity>
         </View>
-        <Typography variant="h3" weight="semibold" className="mb-1">{user?.email}</Typography>
-        <Typography variant="body" color="muted">ID: {user?.id} • {user?.is_superuser ? 'Admin' : 'Member'}</Typography>
-      </Card>
 
-      <View className="space-y-3 gap-3">
-        <Card className="flex-row items-center justify-between p-4">
-          <View className="flex-row items-center gap-3">
-            <Feather name="settings" size={20} color="#64748b" />
-            <Typography variant="body" weight="medium">App Settings</Typography>
-          </View>
-        </Card>
-
-        <Card className="flex-row items-center justify-between p-4">
-          <View className="flex-row items-center gap-3">
-            <Feather name="shield" size={20} color="#64748b" />
-            <Typography variant="body" weight="medium">Privacy & Security</Typography>
-          </View>
-        </Card>
-
-        <Button 
-          variant="destructive" 
-          label="Sign Out" 
-          icon={<Feather name="log-out" size={20} color="#fff" />} 
+        {/* Danger Zone Sign Out Button */}
+        <Button
+          variant="destructive"
+          label="Sign Out"
+          icon={<Feather name="log-out" size={18} color="#fff" />}
           onPress={handleLogout}
-          className="mt-4"
+          loading={isLoggingOut}
+          className="bg-[#C2281F] active:bg-[#301213] h-12 rounded-xl"
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
