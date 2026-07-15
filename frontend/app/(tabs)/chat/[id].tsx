@@ -3,6 +3,7 @@ import { View, FlatList, KeyboardAvoidingView, Platform, TouchableOpacity } from
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { chatService } from '../../../services/chat';
+import { documentService } from '../../../services/document';
 import { Typography } from '../../../components/Typography';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
@@ -63,7 +64,7 @@ export default function ChatScreen() {
             {isUser ? (
               <Feather name="user" size={16} color="#3652E3" />
             ) : (
-              <Feather name="sparkles" size={16} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
+              <Feather name={"sparkles" as any} size={16} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
             )}
           </View>
 
@@ -79,9 +80,15 @@ export default function ChatScreen() {
                   Sources & Citations:
                 </Typography>
                 {item.citations.map((cite: any, i: number) => {
-                  const confidence = cite.score || 85;
+                  const rawScore = cite.score !== undefined && cite.score !== null ? cite.score : 85;
+                  const confidence = rawScore <= 1 ? Math.round(rawScore * 100) : Math.round(rawScore);
                   return (
-                    <View key={i} className="relative overflow-hidden rounded-lg bg-zinc-50 border border-zinc-200 p-3 mb-2 dark:bg-[#1C1E23] dark:border-zinc-800 w-full">
+                    <TouchableOpacity
+                      key={i}
+                      activeOpacity={0.7}
+                      onPress={() => documentService.openDocument(cite.document_id)}
+                      className="relative overflow-hidden rounded-lg bg-zinc-50 border border-zinc-200 p-3 mb-2 dark:bg-[#1C1E23] dark:border-zinc-800 w-full"
+                    >
                       {/* Ribbon Gradient Saturation Bar (Top Hairline) */}
                       <View className="absolute top-0 left-0 right-0 h-[3px] bg-[#0ea5a5] opacity-90" style={{ opacity: confidence / 100 }} />
                       <View className="flex-row justify-between items-center mb-1 w-full">
@@ -92,7 +99,7 @@ export default function ChatScreen() {
                           {confidence}% match
                         </Typography>
                       </View>
-                    </View>
+                    </TouchableOpacity>
                   );
                 })}
               </View>

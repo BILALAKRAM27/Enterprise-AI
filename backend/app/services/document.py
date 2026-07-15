@@ -123,5 +123,6 @@ class DocumentService:
                 except Exception as inner_e:
                     logger.error(f"Failed to update document status to FAILED: {inner_e}")
             finally:
-                if os.path.exists(file_path):
+                # Do not delete files in our persistent uploads directory so they can be opened and retried
+                if "uploads" not in file_path and os.path.exists(file_path):
                     os.remove(file_path)

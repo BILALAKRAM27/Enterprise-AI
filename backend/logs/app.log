@@ -5279,3 +5279,28 @@ DETAIL:  Key (id)=(3) is still referenced from table "citation".
 2026-07-15 23:21:14.845 | INFO     | app.main:on_startup:26 - Database schema initialized.
 2026-07-15 23:21:14.866 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
 2026-07-15 23:21:14.866 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 23:21:44.110 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 23:21:49.634 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 23:21:49.700 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 23:21:49.958 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 23:21:49.983 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 23:21:49.989 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 23:27:21.660 | INFO     | app.services.document:process_document_background:49 - Processing document 54: (L7)India Act 1935 and Lahore Resolution.pdf
+2026-07-15 23:27:21.781 | INFO     | app.services.document:process_document_background:67 - Document 54: 11 chunks created.
+2026-07-15 23:27:21.833 | INFO     | app.services.document:process_document_background:85 - Document 54: generating embeddings...
+2026-07-15 23:27:25.876 | INFO     | app.services.document:process_document_background:103 - Document 54: 11 vectors upserted to Qdrant.
+2026-07-15 23:27:25.901 | INFO     | app.services.document:process_document_background:113 - Document 54 processed successfully — status: READY
+2026-07-15 23:37:21.916 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-15 23:37:23.293 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-15 23:42:03.217 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 23:42:06.177 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 23:42:06.228 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 23:42:06.368 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 23:42:06.416 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 23:42:06.417 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 23:42:15.354 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 23:42:18.284 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 23:42:18.332 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 23:42:18.434 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 23:42:18.463 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 23:42:18.465 | INFO     | app.main:on_startup:32 - Qdrant collection ready.

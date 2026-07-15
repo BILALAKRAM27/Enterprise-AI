@@ -21,8 +21,10 @@ export interface Chat {
 }
 
 export interface Citation {
+  id: number;
+  document_id: number;
   filename: string;
-  text_content: string;
+  text_content?: string;
   score: number;
 }
 
