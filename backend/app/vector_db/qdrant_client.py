@@ -1,6 +1,6 @@
 from qdrant_client import AsyncQdrantClient
 from qdrant_client.http.models import Distance, VectorParams
-from qdrant_client.models import PointStruct, Query
+from qdrant_client.models import PointStruct
 from app.core.config import settings
 from loguru import logger
 
@@ -20,12 +20,25 @@ class QdrantDBClient:
         """Create the Qdrant collection if it doesn't already exist."""
         try:
             exists = await self.client.collection_exists(self.collection_name)
+            if exists:
+                try:
+                    info = await self.client.get_collection(self.collection_name)
+                    vectors_config = info.config.params.vectors
+                    # If it's a single vector config, it will have a .size attribute
+                    current_size = getattr(vectors_config, "size", None)
+                    if current_size is not None and current_size != 3072:
+                        logger.info(f"Qdrant collection size mismatch ({current_size} != 3072). Recreating...")
+                        await self.client.delete_collection(self.collection_name)
+                        exists = False
+                except Exception as ex:
+                    logger.warning(f"Could not verify collection size: {ex}")
+            
             if not exists:
                 await self.client.create_collection(
                     collection_name=self.collection_name,
-                    vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
+                    vectors_config=VectorParams(size=3072, distance=Distance.COSINE),
                 )
-                logger.info(f"Qdrant collection '{self.collection_name}' created.")
+                logger.info(f"Qdrant collection '{self.collection_name}' created (size=3072).")
             else:
                 logger.info(f"Qdrant collection '{self.collection_name}' already exists.")
         except Exception as e:
@@ -40,18 +53,31 @@ class QdrantDBClient:
     async def search(self, query_vector: list[float], limit: int = 5) -> list:
         """
         Search for nearest vectors.
-        Uses query_points() — the current API for AsyncQdrantClient (qdrant-client >= 1.8).
-        The legacy .search() method was removed from the async client.
+        Tries the modern query_points() API first (qdrant-client >=1.7.x),
+        then falls back to the legacy search() API for older versions.
         """
         try:
-            results = await self.client.query_points(
+            # Modern API: query_points (qdrant-client >= 1.7.x)
+            response = await self.client.query_points(
                 collection_name=self.collection_name,
                 query=query_vector,
                 limit=limit,
                 with_payload=True,
             )
-            # query_points returns a QueryResponse with a .points list
-            return results.points
+            return response.points
+        except AttributeError:
+            # Fallback: legacy search API (qdrant-client < 1.7.x)
+            try:
+                results = await self.client.search(
+                    collection_name=self.collection_name,
+                    query_vector=query_vector,
+                    limit=limit,
+                    with_payload=True,
+                )
+                return results
+            except Exception as e:
+                logger.warning(f"Qdrant search failed: {e}")
+                return []
         except Exception as e:
             logger.warning(f"Qdrant search failed: {e}")
             return []

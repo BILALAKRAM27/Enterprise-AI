@@ -4031,3 +4031,1181 @@ ValueError: password cannot be longer than 72 bytes, truncate manually if necess
 2026-07-14 22:39:26.142 | INFO     | app.main:on_startup:26 - Database schema initialized.
 2026-07-14 22:39:26.173 | INFO     | app.vector_db.qdrant_client:init_collection:30 - Qdrant collection 'enterprise_knowledge' already exists.
 2026-07-14 22:39:26.173 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 14:29:45.159 | INFO     | app.rag.embeddings:__init__:16 - Embedder initialized via OpenRouter (model: text-embedding-3-small, base: https://openrouter.ai/api/v1).
+2026-07-15 14:29:49.724 | INFO     | app.rag.generator:__init__:19 - LLM Generator initialized via OpenRouter (model: openai/gpt-3.5-turbo, base: https://openrouter.ai/api/v1).
+2026-07-15 14:29:50.042 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 14:29:50.384 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 14:29:50.417 | INFO     | app.vector_db.qdrant_client:init_collection:30 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 14:29:50.419 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:02:09.421 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:02:13.906 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:02:14.060 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:02:14.411 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:02:14.473 | INFO     | app.vector_db.qdrant_client:init_collection:30 - Qdrant collection size mismatch (1536 != 768). Recreating...
+2026-07-15 21:02:14.862 | INFO     | app.vector_db.qdrant_client:init_collection:41 - Qdrant collection 'enterprise_knowledge' created (size=768).
+2026-07-15 21:02:14.863 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:02:41.225 | INFO     | app.services.document:process_document_background:49 - Processing document 5: project_info.txt
+2026-07-15 21:02:41.228 | INFO     | app.services.document:process_document_background:67 - Document 5: 1 chunks created.
+2026-07-15 21:02:41.241 | INFO     | app.services.document:process_document_background:85 - Document 5: generating embeddings...
+2026-07-15 21:02:41.837 | ERROR    | app.services.document:process_document_background:116 - Error processing document 5: Error embedding content (INVALID_ARGUMENT): 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API key not valid. Please pass a valid API key.'}]}}
+2026-07-15 21:04:16.134 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:04:18.987 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:04:19.026 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:04:19.142 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:04:19.167 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:04:19.168 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:05:03.847 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:05:09.079 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:05:09.137 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:05:09.342 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:05:09.370 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:05:09.373 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:05:56.588 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:05:59.649 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:05:59.699 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:05:59.830 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:05:59.856 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:05:59.857 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:06:22.254 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:06:26.558 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:06:26.605 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:06:26.765 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:06:26.788 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:06:26.789 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:06:40.750 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:06:43.413 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:06:43.456 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:06:43.573 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:06:43.593 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:06:43.593 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:07:28.512 | INFO     | app.services.document:process_document_background:49 - Processing document 6: project_info.txt
+2026-07-15 21:07:28.514 | INFO     | app.services.document:process_document_background:67 - Document 6: 1 chunks created.
+2026-07-15 21:07:28.524 | INFO     | app.services.document:process_document_background:85 - Document 6: generating embeddings...
+2026-07-15 21:07:29.050 | ERROR    | app.services.document:process_document_background:116 - Error processing document 6: Error embedding content (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:10:49.211 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:10:52.637 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:10:52.690 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:10:52.800 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:10:52.824 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:10:52.825 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:12:40.232 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:12:42.975 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:12:43.025 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:12:43.169 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:12:43.188 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:12:43.188 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:13:21.329 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:13:25.751 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:13:25.793 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:13:25.898 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:13:25.917 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:13:25.919 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:13:35.646 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:13:38.414 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:13:38.448 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:13:38.561 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:13:38.582 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:13:38.582 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:14:40.859 | INFO     | app.services.document:process_document_background:49 - Processing document 7: project_info.txt
+2026-07-15 21:14:40.860 | INFO     | app.services.document:process_document_background:67 - Document 7: 1 chunks created.
+2026-07-15 21:14:40.871 | INFO     | app.services.document:process_document_background:85 - Document 7: generating embeddings...
+2026-07-15 21:14:41.565 | ERROR    | app.services.document:process_document_background:116 - Error processing document 7: Error embedding content (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:15:18.382 | INFO     | app.rag.embeddings:__init__:15 - Embedder initialized via Google Generative AI (model: models/text-embedding-004).
+2026-07-15 21:15:22.569 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:15:22.613 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:15:22.811 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:15:22.847 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:15:22.848 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:18:01.272 | INFO     | app.services.document:process_document_background:49 - Processing document 8: project_info.txt
+2026-07-15 21:18:01.274 | INFO     | app.services.document:process_document_background:67 - Document 8: 1 chunks created.
+2026-07-15 21:18:01.285 | INFO     | app.services.document:process_document_background:85 - Document 8: generating embeddings...
+2026-07-15 21:18:02.323 | ERROR    | app.services.document:process_document_background:116 - Error processing document 8: Error embedding content (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:19:44.216 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: text-embedding-004, endpoint: v1).
+2026-07-15 21:19:48.332 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:19:48.395 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:19:48.531 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:19:48.557 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:19:48.558 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:20:13.777 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: text-embedding-004, endpoint: v1).
+2026-07-15 21:20:18.046 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:20:18.103 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:20:18.219 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:20:18.245 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:20:18.246 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:20:47.714 | INFO     | app.services.document:process_document_background:49 - Processing document 9: project_info.txt
+2026-07-15 21:20:47.715 | INFO     | app.services.document:process_document_background:67 - Document 9: 1 chunks created.
+2026-07-15 21:20:47.724 | INFO     | app.services.document:process_document_background:85 - Document 9: generating embeddings...
+2026-07-15 21:20:48.346 | ERROR    | app.services.document:process_document_background:116 - Error processing document 9: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/text-embedding-004 is not found for API version v1, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:21:32.239 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: text-embedding-004, endpoint: v1).
+2026-07-15 21:21:36.202 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:21:36.250 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:21:36.369 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:21:36.394 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:21:36.395 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:23:51.798 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:23:55.538 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:23:55.593 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:23:55.730 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:23:55.766 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:23:55.768 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:24:08.094 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:24:11.798 | INFO     | app.rag.generator:__init__:18 - LLM Generator initialized via Google Generative AI (model: gemini-1.5-flash).
+2026-07-15 21:24:11.891 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:24:12.050 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:24:12.075 | INFO     | app.vector_db.qdrant_client:init_collection:30 - Qdrant collection size mismatch (768 != 3072). Recreating...
+2026-07-15 21:24:12.480 | INFO     | app.vector_db.qdrant_client:init_collection:41 - Qdrant collection 'enterprise_knowledge' created (size=3072).
+2026-07-15 21:24:12.483 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:25:00.135 | INFO     | app.services.document:process_document_background:49 - Processing document 10: project_info.txt
+2026-07-15 21:25:00.137 | INFO     | app.services.document:process_document_background:67 - Document 10: 1 chunks created.
+2026-07-15 21:25:00.148 | INFO     | app.services.document:process_document_background:85 - Document 10: generating embeddings...
+2026-07-15 21:25:01.166 | INFO     | app.services.document:process_document_background:103 - Document 10: 1 vectors upserted to Qdrant.
+2026-07-15 21:25:01.175 | INFO     | app.services.document:process_document_background:113 - Document 10 processed successfully — status: READY
+2026-07-15 21:25:02.674 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:25:03.752 | ERROR    | app.rag.generator:generate_answer:73 - LLM generation error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:25:21.171 | INFO     | app.services.document:process_document_background:49 - Processing document 11: project_info.txt
+2026-07-15 21:25:21.173 | INFO     | app.services.document:process_document_background:67 - Document 11: 1 chunks created.
+2026-07-15 21:25:21.184 | INFO     | app.services.document:process_document_background:85 - Document 11: generating embeddings...
+2026-07-15 21:25:22.587 | INFO     | app.services.document:process_document_background:103 - Document 11: 1 vectors upserted to Qdrant.
+2026-07-15 21:25:22.594 | INFO     | app.services.document:process_document_background:113 - Document 11 processed successfully — status: READY
+2026-07-15 21:25:23.736 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:25:24.166 | ERROR    | app.rag.generator:generate_answer:73 - LLM generation error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:26:10.686 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:26:13.623 | INFO     | app.rag.generator:__init__:27 - LLM Generator initialized via google-genai SDK (model: gemini-2.0-flash, endpoint: v1).
+2026-07-15 21:26:13.661 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:26:13.786 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:26:13.814 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:26:13.815 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:26:47.929 | INFO     | app.services.document:process_document_background:49 - Processing document 12: project_info.txt
+2026-07-15 21:26:47.931 | INFO     | app.services.document:process_document_background:67 - Document 12: 1 chunks created.
+2026-07-15 21:26:47.940 | INFO     | app.services.document:process_document_background:85 - Document 12: generating embeddings...
+2026-07-15 21:26:48.737 | INFO     | app.services.document:process_document_background:103 - Document 12: 1 vectors upserted to Qdrant.
+2026-07-15 21:26:48.746 | INFO     | app.services.document:process_document_background:113 - Document 12 processed successfully — status: READY
+2026-07-15 21:26:50.462 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:26:50.936 | ERROR    | app.rag.generator:generate_answer:87 - LLM generation error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 10.473110054s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}
+2026-07-15 21:27:58.353 | INFO     | app.services.document:process_document_background:49 - Processing document 13: project_info.txt
+2026-07-15 21:27:58.355 | INFO     | app.services.document:process_document_background:67 - Document 13: 1 chunks created.
+2026-07-15 21:27:58.359 | INFO     | app.services.document:process_document_background:85 - Document 13: generating embeddings...
+2026-07-15 21:27:59.117 | INFO     | app.services.document:process_document_background:103 - Document 13: 1 vectors upserted to Qdrant.
+2026-07-15 21:27:59.124 | INFO     | app.services.document:process_document_background:113 - Document 13 processed successfully — status: READY
+2026-07-15 21:28:00.862 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:28:01.308 | ERROR    | app.rag.generator:generate_answer:87 - LLM generation error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 103.248243ms.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '0s'}]}}
+2026-07-15 21:41:36.441 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:41:40.122 | INFO     | app.rag.generator:__init__:27 - LLM Generator initialized via google-genai SDK (model: gemini-2.0-flash, endpoint: v1).
+2026-07-15 21:41:40.182 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:41:40.381 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:41:40.464 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:41:40.465 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:42:11.873 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:42:14.822 | INFO     | app.rag.generator:__init__:27 - LLM Generator initialized via google-genai SDK (model: gemini-2.0-flash, endpoint: v1).
+2026-07-15 21:42:14.874 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:42:14.985 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:42:15.013 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:42:15.014 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:42:24.419 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:42:27.460 | INFO     | app.rag.generator:__init__:27 - LLM Generator initialized via google-genai SDK (model: gemini-2.0-flash, endpoint: v1).
+2026-07-15 21:42:27.511 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:42:27.647 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:42:27.678 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:42:27.679 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:42:55.060 | INFO     | app.services.document:process_document_background:49 - Processing document 14: project_info.txt
+2026-07-15 21:42:55.071 | INFO     | app.services.document:process_document_background:67 - Document 14: 1 chunks created.
+2026-07-15 21:42:55.087 | INFO     | app.services.document:process_document_background:85 - Document 14: generating embeddings...
+2026-07-15 21:42:56.533 | INFO     | app.services.document:process_document_background:103 - Document 14: 1 vectors upserted to Qdrant.
+2026-07-15 21:42:56.545 | INFO     | app.services.document:process_document_background:113 - Document 14 processed successfully — status: READY
+2026-07-15 21:42:58.430 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:42:59.252 | ERROR    | app.rag.generator:generate_answer:87 - LLM generation error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 2.196707341s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}
+2026-07-15 21:46:59.189 | ERROR    | app.core.exceptions:global_exception_handler:18 - Unhandled Exception: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+[SQL: DELETE FROM document WHERE document.id = $1::INTEGER]
+[parameters: (3,)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) | Path: /api/v1/documents/3
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+    │    │       │           │             │      └ (3,)
+    │    │       │           │             └ <function PreparedStatement.fetch at 0x749e029fa5c0>
+    │    │       │           └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+    │    │       └ <class 'collections.deque'>
+    │    └ <member '_rows' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+                 │                   │        └ None
+                 │                   └ (3,)
+                 └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+                            └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+                 │        └ <asyncpg.protocol.protocol.Protocol object at 0x749de3659a70>
+                 └ <function PreparedStatement.__bind_execute.<locals>.<lambda> at 0x749de1e76b60>
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+    return await waiter
+
+asyncpg.exceptions.ForeignKeyViolationError: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x749e03299a80>
+    │    └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x749e02eb09d0>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ (3,)
+    │      │       └ 'DELETE FROM document WHERE document.id = $1::INTEGER'
+    │      └ <function AsyncAdapt_asyncpg_cursor.execute at 0x749e02befc40>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_asyncpg_cursor._prepare_and_execute at 0x749de27c6560>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x749de1ee2e40 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object AsyncAdapt_asyncpg_connection._rollback_and_discard at 0x749de1ea1700>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+    │    └ <function AsyncAdapt_asyncpg_cursor._handle_exception at 0x749e02befa60>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    │    │                                   └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+          │                     └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+          └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/local/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x749e05d2a160>
+  File "/usr/local/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x749e05dff740>
+           └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x749e05dfeca0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x749e04d81910>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+    │    └ <function subprocess_started at 0x749e04cc9e40>
+    └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x749e04d35690>>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 74, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x749e04d7df80>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x749e04d81910>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x749e04d35690>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+           │           │    └ <function Server.serve at 0x749e04cc8c20>
+           │           └ <uvicorn.server.Server object at 0x749e04d35690>
+           └ <function asyncio_run at 0x749e04fb71a0>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x749e04cd3a60>
+           │      └ <function Runner.run at 0x749e05077100>
+           └ <asyncio.runners.Runner object at 0x749e04d80890>
+  File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /usr/local/lib/python3.11/site-packages/uvicorn/server.py:78> wai...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x749e05074d60>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x749e04d80890>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x749e05074cc0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x749e05076ac0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x749e0500ba60>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "/usr/local/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/h11_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x749e04b27690>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+                 │    └ <fastapi.applications.FastAPI object at 0x749e03b0c490>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x749e04b27690>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+  File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x749dfb65d5d0>
+          └ <fastapi.applications.FastAPI object at 0x749e03b0c490>
+> File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x749de2793e20>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x749dfb65d5d0>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x749de2793e20>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <function CORSMiddleware.simple_response at 0x749e03eb0720>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>>, ...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x749dfb65d410>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>>, ...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │                            │    │    └ <starlette.requests.Request object at 0x749de1eb1910>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x749dfb65d410>
+          └ <function wrap_app_handling_exceptions at 0x749e03fbaa20>
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <fastapi.routing.APIRouter object at 0x749de28b1950>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x749de28b1950>>
+          └ <fastapi.routing.APIRouter object at 0x749de28b1950>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2683, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │     └ <function _IncludedRouter.handle at 0x749e03e01440>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1753, in handle
+    await self.original_router.handle(scope, receive, send)
+          │    │               │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │    │               │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │               │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    │               └ <function APIRouter.handle at 0x749e03e03420>
+          │    └ <fastapi.routing.APIRouter object at 0x749e02a9b350>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2738, in handle
+    await included_router._handle_selected(scope, receive, send)
+          │               │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │               │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │               │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │               └ <function _IncludedRouter._handle_selected at 0x749e03e014e0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1764, in _handle_selected
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │     └ <function _IncludedRouter.handle at 0x749e03e01440>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1753, in handle
+    await self.original_router.handle(scope, receive, send)
+          │    │               │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │    │               │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │    │               │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    │               └ <function APIRouter.handle at 0x749e03e03420>
+          │    └ <fastapi.routing.APIRouter object at 0x749e02a9bfd0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2738, in handle
+    await included_router._handle_selected(scope, receive, send)
+          │               │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │               │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │               │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │               └ <function _IncludedRouter._handle_selected at 0x749e03e014e0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1773, in _handle_selected
+    await original_route.handle(scope, receive, send)
+          │              │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │              │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │              │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │              └ <function APIRoute.handle at 0x749e03de7560>
+          └ APIRoute(path='/{document_id}', name='delete_document', methods=['DELETE'])
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1264, in handle
+    await app(scope, receive, send)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <function request_response.<locals>.app at 0x749de27eba60>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 150, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27eae80>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │                            │    └ <starlette.requests.Request object at 0x749de1eb0c50>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x749de27ebba0>
+          └ <function wrap_app_handling_exceptions at 0x749e03fbaa20>
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de27cc0e0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1ee2f90>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <function request_response.<locals>.app.<locals>.app at 0x749de27ebba0>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 136, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x749de1eb0c50>
+                     └ <function get_request_handler.<locals>.app at 0x749de27eb740>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 690, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x749e03de67a0>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 344, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1eb2710>, 'current_user': <app.models.user.User object a...
+                 │         └ <function delete_document at 0x749de2837b00>
+                 └ Dependant(path_params=[ModelField(field_info=Path(PydanticUndefined), name='document_id', mode='validation', config=None)], q...
+
+  File "/app/app/api/v1/endpoints/documents.py", line 82, in delete_document
+    await db.commit()
+          │  └ <function AsyncSession.commit at 0x749e02eac040>
+          └ <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1eb2710>
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 999, in commit
+    await greenlet_spawn(self.sync_session.commit)
+          │              │    │            └ <function Session.commit at 0x749e02de53a0>
+          │              │    └ <sqlalchemy.orm.session.Session object at 0x749de1eb3190>
+          │              └ <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1eb2710>
+          └ <function greenlet_spawn at 0x749e03b6ff60>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             │       │      └ None
+             │       └ <method 'switch' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x749de1ee2e40 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+    │     └ <function SessionTransaction.commit at 0x749e02de4360>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1eb7c00>
+  File "<string>", line 2, in commit
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {'_to_root': True}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1eb7c00>
+                └ <function SessionTransaction.commit at 0x749e02de42c0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+    │    └ <function SessionTransaction._prepare_impl at 0x749e02de4180>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1eb7c00>
+  File "<string>", line 2, in _prepare_impl
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1eb7c00>
+                └ <function SessionTransaction._prepare_impl at 0x749e02de40e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x749e02de82c0>
+    │    └ <sqlalchemy.orm.session.Session object at 0x749de1eb3190>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1eb7c00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x749e02de84a0>
+    └ <sqlalchemy.orm.session.Session object at 0x749de1eb3190>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x749de1ebc380>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class \'asyncpg.exceptions.ForeignKeyViolationError\...
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x749e02f53e20>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x749de1e7d390>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x749de1e7d390>
+    │   └ <function DeleteAll.execute at 0x749e02f6cc20>
+    └ DeleteAll(Mapper[Document(document)])
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 678, in execute
+    util.preloaded.orm_persistence.delete_obj(
+    │    │         │               └ <function delete_obj at 0x749e02fb16c0>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py'>
+    │    └ <module 'sqlalchemy.util.preloaded' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/preloaded.py'>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 194, in delete_obj
+    _emit_delete_statements(
+    └ <function _emit_delete_statements at 0x749e02fb1da0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 1472, in _emit_delete_statements
+    c = connection.execute(
+        │          └ <function Connection.execute at 0x749e033cdc60>
+        └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Delete object at 0x749de27d1b90>>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x749e033cdf80>
+           └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x749e033ce160>
+          └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           │    └ <function Connection._exec_single_context at 0x749e033ce200>
+           └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x749e033ce480>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+          │                    │              └ (<class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError'>, IntegrityError('<class \'asyncpg.e...
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class \'asyncpg.exceptions.ForeignKeyViolationError\...
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x749e03299a80>
+    │    └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x749e02eb09d0>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1eb21d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ (3,)
+    │      │       └ 'DELETE FROM document WHERE document.id = $1::INTEGER'
+    │      └ <function AsyncAdapt_asyncpg_cursor.execute at 0x749e02befc40>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_asyncpg_cursor._prepare_and_execute at 0x749de27c6560>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x749de1ee2e40 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object AsyncAdapt_asyncpg_connection._rollback_and_discard at 0x749de1ea1700>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+    │    └ <function AsyncAdapt_asyncpg_cursor._handle_exception at 0x749e02befa60>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    │    │                                   └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de1e5ae00>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+          │                     └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+          └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+[SQL: DELETE FROM document WHERE document.id = $1::INTEGER]
+[parameters: (3,)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-07-15 21:48:03.313 | ERROR    | app.core.exceptions:global_exception_handler:18 - Unhandled Exception: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+[SQL: DELETE FROM document WHERE document.id = $1::INTEGER]
+[parameters: (3,)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) | Path: /api/v1/documents/3
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+    │    │       │           │             │      └ (3,)
+    │    │       │           │             └ <function PreparedStatement.fetch at 0x749e029fa5c0>
+    │    │       │           └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+    │    │       └ <class 'collections.deque'>
+    │    └ <member '_rows' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+                 │                   │        └ None
+                 │                   └ (3,)
+                 └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+                            └ <asyncpg.prepared_stmt.PreparedStatement object at 0x749de27e3470>
+  File "/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+                 │        └ <asyncpg.protocol.protocol.Protocol object at 0x749de3659a70>
+                 └ <function PreparedStatement.__bind_execute.<locals>.<lambda> at 0x749de1dd3ce0>
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+    return await waiter
+
+asyncpg.exceptions.ForeignKeyViolationError: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x749e03299a80>
+    │    └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x749e02eb09d0>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ (3,)
+    │      │       └ 'DELETE FROM document WHERE document.id = $1::INTEGER'
+    │      └ <function AsyncAdapt_asyncpg_cursor.execute at 0x749e02befc40>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_asyncpg_cursor._prepare_and_execute at 0x749de27c71c0>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x749de1a598c0 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object AsyncAdapt_asyncpg_connection._rollback_and_discard at 0x749de1a70450>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+    │    └ <function AsyncAdapt_asyncpg_cursor._handle_exception at 0x749e02befa60>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    │    │                                   └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+          │                     └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+          └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError: <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/local/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x749e05d2a160>
+  File "/usr/local/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x749e05dff740>
+           └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x749e05dfeca0>
+    └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x749e04d81910>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+    │    └ <function subprocess_started at 0x749e04cc9e40>
+    └ <SpawnProcess name='SpawnProcess-1' parent=1 started>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x749e04d35690>>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 74, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x749e04d7df80>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x749e04d81910>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x749e04d35690>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('0.0.0.0', 8000)>]
+           │           │    └ <function Server.serve at 0x749e04cc8c20>
+           │           └ <uvicorn.server.Server object at 0x749e04d35690>
+           └ <function asyncio_run at 0x749e04fb71a0>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x749e04cd3a60>
+           │      └ <function Runner.run at 0x749e05077100>
+           └ <asyncio.runners.Runner object at 0x749e04d80890>
+  File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /usr/local/lib/python3.11/site-packages/uvicorn/server.py:78> wai...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x749e05074d60>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x749e04d80890>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x749e05074cc0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x749e05076ac0>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x749e0500ba60>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "/usr/local/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/h11_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x749e04b27690>
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+                 │    └ <fastapi.applications.FastAPI object at 0x749e03b0c490>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x749e04b27690>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+  File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x749dfb65d5d0>
+          └ <fastapi.applications.FastAPI object at 0x749e03b0c490>
+> File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x749de2748e00>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x749dfb65d5d0>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8000', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer ey...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x749de2748e00>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <function CORSMiddleware.simple_response at 0x749e03eb0720>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>>, ...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x749dfb65d410>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x749dfb65d510>>, ...
+          │                            │    │    │     │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │                            │    │    └ <starlette.requests.Request object at 0x749de1a78350>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x749dfb65d410>
+          └ <function wrap_app_handling_exceptions at 0x749e03fbaa20>
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <fastapi.routing.APIRouter object at 0x749de28b1950>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x749dfb65d810>
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    └ <bound method APIRouter.app of <fastapi.routing.APIRouter object at 0x749de28b1950>>
+          └ <fastapi.routing.APIRouter object at 0x749de28b1950>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2683, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │     └ <function _IncludedRouter.handle at 0x749e03e01440>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1753, in handle
+    await self.original_router.handle(scope, receive, send)
+          │    │               │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │    │               │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │               │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    │               └ <function APIRouter.handle at 0x749e03e03420>
+          │    └ <fastapi.routing.APIRouter object at 0x749e02a9b350>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2738, in handle
+    await included_router._handle_selected(scope, receive, send)
+          │               │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │               │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │               │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │               └ <function _IncludedRouter._handle_selected at 0x749e03e014e0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9b350>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1764, in _handle_selected
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │     └ <function _IncludedRouter.handle at 0x749e03e01440>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1753, in handle
+    await self.original_router.handle(scope, receive, send)
+          │    │               │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │    │               │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │    │               │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │    │               └ <function APIRouter.handle at 0x749e03e03420>
+          │    └ <fastapi.routing.APIRouter object at 0x749e02a9bfd0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 2738, in handle
+    await included_router._handle_selected(scope, receive, send)
+          │               │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │               │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │               │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │               └ <function _IncludedRouter._handle_selected at 0x749e03e014e0>
+          └ _IncludedRouter(original_router=<fastapi.routing.APIRouter object at 0x749e02a9bfd0>, include_context=_RouterIncludeContext(i...
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1773, in _handle_selected
+    await original_route.handle(scope, receive, send)
+          │              │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │              │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │              │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │              └ <function APIRoute.handle at 0x749e03de7560>
+          └ APIRoute(path='/{document_id}', name='delete_document', methods=['DELETE'])
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 1264, in handle
+    await app(scope, receive, send)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <function request_response.<locals>.app at 0x749de1dd28e0>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 150, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd27a0>
+          │                            │    │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          │                            │    └ <starlette.requests.Request object at 0x749de1a78e10>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x749de1dd2840>
+          └ <function wrap_app_handling_exceptions at 0x749e03fbaa20>
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x749de1dd2a20>
+          │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x749de1a782d0>>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.4', 8000), 'c...
+          └ <function request_response.<locals>.app.<locals>.app at 0x749de1dd2840>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 136, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x749de1a78e10>
+                     └ <function get_request_handler.<locals>.app at 0x749de1dd2660>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 690, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x749e03de67a0>
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 344, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1a79a90>, 'current_user': <app.models.user.User object a...
+                 │         └ <function delete_document at 0x749de2837b00>
+                 └ Dependant(path_params=[ModelField(field_info=Path(PydanticUndefined), name='document_id', mode='validation', config=None)], q...
+
+  File "/app/app/api/v1/endpoints/documents.py", line 82, in delete_document
+    await db.commit()
+          │  └ <function AsyncSession.commit at 0x749e02eac040>
+          └ <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1a79a90>
+
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 999, in commit
+    await greenlet_spawn(self.sync_session.commit)
+          │              │    │            └ <function Session.commit at 0x749e02de53a0>
+          │              │    └ <sqlalchemy.orm.session.Session object at 0x749de1a7a1d0>
+          │              └ <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x749de1a79a90>
+          └ <function greenlet_spawn at 0x749e03b6ff60>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             │       │      └ None
+             │       └ <method 'switch' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x749de1a598c0 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2035, in commit
+    trans.commit(_to_root=True)
+    │     └ <function SessionTransaction.commit at 0x749e02de4360>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1d033e0>
+  File "<string>", line 2, in commit
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {'_to_root': True}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1d033e0>
+                └ <function SessionTransaction.commit at 0x749e02de42c0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1316, in commit
+    self._prepare_impl()
+    │    └ <function SessionTransaction._prepare_impl at 0x749e02de4180>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1d033e0>
+  File "<string>", line 2, in _prepare_impl
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1d033e0>
+                └ <function SessionTransaction._prepare_impl at 0x749e02de40e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x749e02de82c0>
+    │    └ <sqlalchemy.orm.session.Session object at 0x749de1a7a1d0>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x749de1d033e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4353, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x749e02de84a0>
+    └ <sqlalchemy.orm.session.Session object at 0x749de1a7a1d0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x749de1a7b8c0>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class \'asyncpg.exceptions.ForeignKeyViolationError\...
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4449, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x749e02f53e20>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x749de1a7a390>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 465, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x749de1a7a390>
+    │   └ <function DeleteAll.execute at 0x749e02f6cc20>
+    └ DeleteAll(Mapper[Document(document)])
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 678, in execute
+    util.preloaded.orm_persistence.delete_obj(
+    │    │         │               └ <function delete_obj at 0x749e02fb16c0>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py'>
+    │    └ <module 'sqlalchemy.util.preloaded' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/preloaded.py'>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.11/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 194, in delete_obj
+    _emit_delete_statements(
+    └ <function _emit_delete_statements at 0x749e02fb1da0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 1472, in _emit_delete_statements
+    c = connection.execute(
+        │          └ <function Connection.execute at 0x749e033cdc60>
+        └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1421, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Delete object at 0x749de27d1b90>>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x749e033cdf80>
+           └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x749e033ce160>
+          └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           │    └ <function Connection._exec_single_context at 0x749e033ce200>
+           └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x749e033ce480>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+          │                    │              └ (<class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.IntegrityError'>, IntegrityError('<class \'asyncpg.e...
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class \'asyncpg.exceptions.ForeignKeyViolationError\...
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x749e03299a80>
+    │    └ <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x749e02eb09d0>
+    └ <sqlalchemy.engine.base.Connection object at 0x749de1a7a050>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ (3,)
+    │      │       └ 'DELETE FROM document WHERE document.id = $1::INTEGER'
+    │      └ <function AsyncAdapt_asyncpg_cursor.execute at 0x749e02befc40>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_asyncpg_cursor._prepare_and_execute at 0x749de27c71c0>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x749de1a598c0 (otid=0x57bd8eead220) dead>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <coroutine object AsyncAdapt_asyncpg_connection._rollback_and_discard at 0x749de1a70450>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+    │    └ <function AsyncAdapt_asyncpg_cursor._handle_exception at 0x749e02befa60>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+    │    │                                   └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_asyncpg_cursor' objects>
+    └ <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x749de27866e0>
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+          │                     └ ForeignKeyViolationError('update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on...
+          └ IntegrityError('<class \'asyncpg.exceptions.ForeignKeyViolationError\'>: update or delete on table "document" violates foreig...
+
+sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: update or delete on table "document" violates foreign key constraint "citation_document_id_fkey" on table "citation"
+DETAIL:  Key (id)=(3) is still referenced from table "citation".
+[SQL: DELETE FROM document WHERE document.id = $1::INTEGER]
+[parameters: (3,)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-07-15 21:49:17.155 | INFO     | app.services.document:process_document_background:49 - Processing document 15: Samsung_Galaxy_Terra_Innovation_Challenge.docx
+2026-07-15 21:49:17.424 | INFO     | app.services.document:process_document_background:67 - Document 15: 35 chunks created.
+2026-07-15 21:49:17.492 | INFO     | app.services.document:process_document_background:85 - Document 15: generating embeddings...
+2026-07-15 21:49:21.387 | INFO     | app.services.document:process_document_background:103 - Document 15: 35 vectors upserted to Qdrant.
+2026-07-15 21:49:21.403 | INFO     | app.services.document:process_document_background:113 - Document 15 processed successfully — status: READY
+2026-07-15 21:50:17.192 | WARNING  | app.vector_db.qdrant_client:search:67 - Qdrant search failed: 'AsyncQdrantClient' object has no attribute 'search'
+2026-07-15 21:50:18.217 | ERROR    | app.rag.generator:generate_answer:87 - LLM generation error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 43.22666306s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}
+2026-07-15 21:51:33.160 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:51:41.170 | INFO     | app.rag.generator:__init__:27 - LLM Generator initialized via google-genai SDK (model: gemini-2.0-flash, endpoint: v1).
+2026-07-15 21:51:41.326 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:51:41.530 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:51:41.581 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:51:41.582 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:52:06.244 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:52:11.689 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 21:52:11.916 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:52:12.198 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:52:12.255 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:52:12.266 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:52:55.722 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:52:59.995 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 21:53:00.072 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:53:00.252 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:53:00.295 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:53:00.296 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:55:10.110 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-2.0-flash
+2026-07-15 21:55:27.338 | WARNING  | app.rag.generator:_generate_with_fallback:91 - Model gemini-2.0-flash quota exhausted — trying next model.
+2026-07-15 21:55:29.341 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-1.5-flash
+2026-07-15 21:55:29.608 | ERROR    | app.rag.generator:generate_answer:138 - LLM generation error (all models exhausted): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:55:54.696 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-2.0-flash
+2026-07-15 21:56:11.165 | WARNING  | app.rag.generator:_generate_with_fallback:91 - Model gemini-2.0-flash quota exhausted — trying next model.
+2026-07-15 21:56:13.168 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-1.5-flash
+2026-07-15 21:56:13.411 | ERROR    | app.rag.generator:generate_answer:138 - LLM generation error (all models exhausted): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:57:32.497 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-2.0-flash
+2026-07-15 21:57:48.946 | WARNING  | app.rag.generator:_generate_with_fallback:91 - Model gemini-2.0-flash quota exhausted — trying next model.
+2026-07-15 21:57:50.948 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-1.5-flash
+2026-07-15 21:57:51.160 | ERROR    | app.rag.generator:generate_answer:138 - LLM generation error (all models exhausted): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-07-15 21:58:35.322 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:58:40.367 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 21:58:40.457 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:58:40.681 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:58:40.716 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:58:40.723 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:58:56.994 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 21:59:00.937 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 21:59:00.999 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 21:59:01.149 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 21:59:01.179 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 21:59:01.180 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 21:59:17.905 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-2.0-flash
+2026-07-15 21:59:34.299 | WARNING  | app.rag.generator:_generate_with_fallback:91 - Model gemini-2.0-flash quota exhausted — trying next model.
+2026-07-15 21:59:36.302 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-2.5-flash
+2026-07-15 21:59:36.592 | ERROR    | app.rag.generator:generate_answer:138 - LLM generation error (all models exhausted): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.', 'status': 'NOT_FOUND'}}
+2026-07-15 22:04:31.210 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 22:04:35.380 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 22:04:35.450 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 22:04:35.651 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 22:04:35.692 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 22:04:35.693 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 22:04:54.454 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-15 22:04:55.444 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-15 22:06:04.549 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-15 22:06:05.694 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-15 22:07:10.363 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-15 22:07:11.318 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-15 22:10:48.097 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 22:10:53.431 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 22:10:53.507 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 22:10:53.718 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 22:10:53.756 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 22:10:53.757 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 22:11:04.620 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 22:11:11.034 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 22:11:11.437 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 22:11:12.036 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 22:11:12.155 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 22:11:12.160 | INFO     | app.main:on_startup:32 - Qdrant collection ready.

@@ -3,7 +3,7 @@ import os
 import shutil
 from fastapi import APIRouter, Depends, UploadFile, File, BackgroundTasks, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, delete as sql_delete
 from typing import List
 
 from app.database.session import get_db
@@ -78,6 +78,30 @@ async def delete_document(
     if not doc or doc.user_id != current_user.id:
         raise HTTPException(status_code=404, detail="Document not found")
 
+    # 1. Delete all Citation rows that reference this document.
+    #    The Citation model has a FK to document.id but the Document model
+    #    has no cascade on that relationship, so we must delete them manually
+    #    to avoid a ForeignKeyViolationError.
+    from app.models.citation import Citation
+    await db.execute(
+        sql_delete(Citation).where(Citation.document_id == document_id)
+    )
+
+    # 2. Delete the document (DocumentChunks cascade via the ORM relationship).
     await db.delete(doc)
     await db.commit()
+
+    # 3. Best-effort: remove vectors from Qdrant so stale results don't appear.
+    try:
+        from app.vector_db.qdrant_client import qdrant_db
+        from qdrant_client.models import Filter, FieldCondition, MatchValue
+        await qdrant_db.client.delete(
+            collection_name=qdrant_db.collection_name,
+            points_selector=Filter(
+                must=[FieldCondition(key="document_id", match=MatchValue(value=document_id))]
+            ),
+        )
+    except Exception:
+        pass  # Non-critical — vectors will simply not be returned for this document
+
     return {"status": "success"}

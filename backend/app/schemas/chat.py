@@ -8,6 +8,7 @@ class CitationResponse(BaseModel):
     document_id: int
     page_number: Optional[int]
     score: Optional[float]
+    filename: Optional[str] = None
     
     model_config = ConfigDict(from_attributes=True)
 

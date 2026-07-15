@@ -54,10 +54,11 @@ async def get_messages(
     if not chat or chat.user_id != current_user.id:
         raise HTTPException(status_code=404, detail="Chat not found")
         
+    from app.models.citation import Citation
     result = await db.execute(
         select(Message)
         .where(Message.chat_id == chat_id)
-        .options(selectinload(Message.citations))
+        .options(selectinload(Message.citations).selectinload(Citation.document))
         .order_by(Message.created_at.asc())
     )
     return result.scalars().all()

@@ -103,8 +103,8 @@ class DocumentService:
                     logger.info(f"Document {doc_id}: {len(points)} vectors upserted to Qdrant.")
                 else:
                     logger.warning(
-                        f"Document {doc_id}: OpenRouter not configured, skipping embeddings. "
-                        "Set OPENROUTER_API_KEY in .env to enable vector search."
+                        f"Document {doc_id}: Google Generative AI not configured, skipping embeddings. "
+                        "Set GEMINI_API_KEY in .env to enable vector search."
                     )
 
                 doc.status = DocumentStatus.READY

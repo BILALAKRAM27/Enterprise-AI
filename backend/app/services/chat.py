@@ -43,11 +43,12 @@ class ChatService:
                 db.add(citation)
         
         await db.commit()
-        # Refresh to load citations
         from sqlalchemy.orm import selectinload
-        # Let's load citations manually or via query to be safe with async
+        # Let's load citations and nested documents to avoid lazy-load issues
         result = await db.execute(
-            select(Message).where(Message.id == ai_msg.id).options(selectinload(Message.citations))
+            select(Message)
+            .where(Message.id == ai_msg.id)
+            .options(selectinload(Message.citations).selectinload(Citation.document))
         )
         ai_msg = result.scalar_one()
         return ai_msg

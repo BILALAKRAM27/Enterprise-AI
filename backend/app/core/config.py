@@ -33,12 +33,7 @@ class Settings(BaseSettings):
     QDRANT_PORT: int = 6333
     QDRANT_API_KEY: Optional[str] = None
     
-    # LLM — OpenRouter is the primary provider for both chat and embeddings.
-    # Get your key at https://openrouter.ai/keys
-    OPENROUTER_API_KEY: str = ""
-    
-    # OpenRouter base URL (do not change)
-    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+    GEMINI_API_KEY: str = "AQ.Ab8RN6IrNo6m6N2cmiH_sfiF_wTakfKVykWPks2NEYyWHttJMg"
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True, extra="ignore")
 
