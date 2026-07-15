@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_SERVER=db
+      - QDRANT_HOST=qdrant
+    depends_on:
+      db:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    env_file:
+      - ./backend/.env
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=enterprise_ai
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  postgres_data:
+  qdrant_data:

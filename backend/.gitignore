@@ -1,0 +1,19 @@
+# Environment files
+.env
+*.env
+
+backend/.env
+frontend/.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+
+# Expo
+.expo/
+
+# Logs
+*.log
