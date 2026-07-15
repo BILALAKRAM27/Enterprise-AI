@@ -5209,3 +5209,21 @@ DETAIL:  Key (id)=(3) is still referenced from table "citation".
 2026-07-15 22:11:12.036 | INFO     | app.main:on_startup:26 - Database schema initialized.
 2026-07-15 22:11:12.155 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
 2026-07-15 22:11:12.160 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 22:12:00.827 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 22:12:05.444 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 22:12:05.507 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 22:12:05.704 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 22:12:05.736 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 22:12:05.737 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 22:12:49.167 | INFO     | app.services.document:process_document_background:49 - Processing document 16: cover letter.pdf
+2026-07-15 22:12:49.295 | INFO     | app.services.document:process_document_background:67 - Document 16: 2 chunks created.
+2026-07-15 22:12:49.320 | INFO     | app.services.document:process_document_background:85 - Document 16: generating embeddings...
+2026-07-15 22:12:50.906 | INFO     | app.services.document:process_document_background:103 - Document 16: 2 vectors upserted to Qdrant.
+2026-07-15 22:12:50.922 | INFO     | app.services.document:process_document_background:113 - Document 16 processed successfully — status: READY
+2026-07-15 22:14:02.286 | INFO     | app.services.document:process_document_background:49 - Processing document 17: (L1)Ideology of Pakistan.pdf
+2026-07-15 22:14:02.332 | INFO     | app.services.document:process_document_background:67 - Document 17: 6 chunks created.
+2026-07-15 22:14:02.360 | INFO     | app.services.document:process_document_background:85 - Document 17: generating embeddings...
+2026-07-15 22:14:04.473 | INFO     | app.services.document:process_document_background:103 - Document 17: 6 vectors upserted to Qdrant.
+2026-07-15 22:14:04.481 | INFO     | app.services.document:process_document_background:113 - Document 17 processed successfully — status: READY
+2026-07-15 22:16:31.273 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-15 22:16:32.550 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
