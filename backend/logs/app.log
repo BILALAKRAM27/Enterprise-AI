@@ -5304,3 +5304,19 @@ DETAIL:  Key (id)=(3) is still referenced from table "citation".
 2026-07-15 23:42:18.434 | INFO     | app.main:on_startup:26 - Database schema initialized.
 2026-07-15 23:42:18.463 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
 2026-07-15 23:42:18.465 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 23:42:43.576 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-15 23:42:46.433 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-15 23:42:46.484 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-15 23:42:46.608 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-15 23:42:46.638 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-15 23:42:46.640 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-15 23:46:18.995 | INFO     | app.services.document:process_document_background:49 - Processing document 55: (L15)Constitution of 1956.pdf
+2026-07-15 23:46:19.372 | INFO     | app.services.document:process_document_background:67 - Document 55: 23 chunks created.
+2026-07-15 23:46:19.424 | INFO     | app.services.document:process_document_background:85 - Document 55: generating embeddings...
+2026-07-15 23:46:22.084 | INFO     | app.services.document:process_document_background:49 - Processing document 56: (L16)Constitution of 1962.pdf
+2026-07-15 23:46:22.246 | INFO     | app.services.document:process_document_background:67 - Document 56: 15 chunks created.
+2026-07-15 23:46:22.295 | INFO     | app.services.document:process_document_background:103 - Document 55: 23 vectors upserted to Qdrant.
+2026-07-15 23:46:22.303 | INFO     | app.services.document:process_document_background:113 - Document 55 processed successfully — status: READY
+2026-07-15 23:46:22.308 | INFO     | app.services.document:process_document_background:85 - Document 56: generating embeddings...
+2026-07-15 23:46:23.982 | INFO     | app.services.document:process_document_background:103 - Document 56: 15 vectors upserted to Qdrant.
+2026-07-15 23:46:23.992 | INFO     | app.services.document:process_document_background:113 - Document 56 processed successfully — status: READY
