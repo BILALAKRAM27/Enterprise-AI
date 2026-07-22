@@ -11,6 +11,7 @@ import { useAppSelector, useAppDispatch } from '../hooks/store';
 import { storage } from '../utils/storage';
 import { setCredentials, setLoading, logout } from '../store/slices/authSlice';
 import { authService } from '../services/auth';
+import { healthService } from '../services/health';
 import { SplashScreenView } from './SplashScreenView';
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
@@ -23,10 +24,16 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   // Stays true until the exit animation finishes.
   const [showSplash, setShowSplash] = useState(true);
 
-  // ── Token bootstrap ──────────────────────────────────────────────────────
+  // ── Token & Health bootstrap ──────────────────────────────────────────────
   useEffect(() => {
     const bootstrapAsync = async () => {
       try {
+        // Ping health endpoint on boot
+        const health = await healthService.checkHealth();
+        if (!health.ok) {
+          console.warn('[AuthGuard] Server health check failed:', health.message);
+        }
+
         const token = await storage.getItemAsync('access_token');
         if (token) {
           const user = await authService.getCurrentUser();

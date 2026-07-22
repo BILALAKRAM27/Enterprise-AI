@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, ScrollView, Alert, Image, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { storage } from '../../utils/storage';
-
+import { Feather } from '@expo/vector-icons';
 import { useAppDispatch } from '../../hooks/store';
 import { setCredentials } from '../../store/slices/authSlice';
 import { authService } from '../../services/auth';
@@ -23,6 +23,7 @@ type LoginForm = z.infer<typeof loginSchema>;
 export default function LoginScreen() {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>({
@@ -58,10 +59,15 @@ export default function LoginScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View className="mx-auto w-full max-w-[440px] bg-white border border-[#E4E4E7] p-8 dark:bg-[#1C1E23] dark:border-[#3F3F46] rounded-2xl shadow-sm">
-          <View className="mb-8">
-            <Typography variant="h1" weight="bold" className="text-[#3652E3] dark:text-[#6E85FF] tracking-tight">
-              Enterprise AI
-            </Typography>
+          <View className="mb-8 items-center">
+            <View className="flex-row items-center gap-2.5">
+              <Image
+                source={require('../../../frontend/assets/images/logo.png')}
+                style={{ width: 100, height: 100, borderRadius: 100, marginLeft: -30, marginRight: -30, }}
+                resizeMode="contain"
+              />
+              <Text className="font-bold text-[35px] text-[#1abdbd]">Enterprise AI</Text>
+            </View>
             <Typography variant="body" color="muted" className="mt-2 text-sm leading-relaxed">
               Sign in to access your knowledge base and intelligent chat.
             </Typography>
@@ -90,17 +96,30 @@ export default function LoginScreen() {
               control={control}
               name="password"
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  label="Password"
-                  placeholder="••••••••"
-                  secureTextEntry
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  error={errors.password?.message}
-                  onSubmitEditing={handleSubmit(onSubmit)}
-                  className="bg-[#FAFAFA] dark:bg-[#0B0D12] h-12 px-4 rounded-xl text-base text-[#18181B] dark:text-[#FAFAFA]"
-                />
+                <View className="relative w-full">
+                  <Input
+                    label="Password"
+                    placeholder="••••••••"
+                    secureTextEntry={!showPassword}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    error={errors.password?.message}
+                    className="bg-[#FAFAFA] dark:bg-[#0B0D12] h-12 pl-4 pr-12 rounded-xl text-base text-[#18181B] dark:text-[#FAFAFA]"
+                  />
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => setShowPassword(!showPassword)}
+                    style={{ position: 'absolute', right: 4, top: errors.password?.message ? 24 : 32 }}
+                    className="w-12 h-6 items-center justify-center rounded-full"
+                  >
+                    <Feather
+                      name={showPassword ? "eye-off" : "eye"}
+                      size={18}
+                      color="#71717A"
+                    />
+                  </TouchableOpacity>
+                </View>
               )}
             />
 

@@ -31,7 +31,8 @@ async def on_startup():
         from app.services.document import DocumentService
         await qdrant_db.init_collection()
         logger.info("Qdrant collection ready.")
-        await DocumentService.reindex_all_documents()
+        import asyncio
+        # asyncio.create_task(DocumentService.reindex_all_documents())
     except Exception as e:
         logger.warning(f"Qdrant init / reindex skipped: {e}")
 

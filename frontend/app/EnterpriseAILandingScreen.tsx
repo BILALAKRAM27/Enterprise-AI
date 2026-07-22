@@ -16,6 +16,7 @@ import {
   Text,
   View,
   useWindowDimensions,
+  Touchable,
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -125,6 +126,18 @@ export default function EnterpriseAILandingScreen() {
   const router = useRouter();
   const navigateTo = useCallback((path: '/(auth)/login' | '/(auth)/register') => router.push(path), [router]);
 
+  const sectionPositions = useRef<{ [key: string]: number }>({}).current;
+  const handleSectionLayout = useCallback((key: string, y: number) => {
+    sectionPositions[key] = y;
+  }, [sectionPositions]);
+
+  const scrollToAnchor = useCallback((anchor: string) => {
+    const y = sectionPositions[anchor];
+    if (y !== undefined) {
+      (containerRef.current as any)?.scrollTo({ y: Math.max(0, y - 64), animated: true });
+    }
+  }, [sectionPositions, containerRef]);
+
   return (
     <View className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]">
       {/* scroll-progress confidence ribbon */}
@@ -151,10 +164,18 @@ export default function EnterpriseAILandingScreen() {
         >
           <View onLayout={(e) => setViewportHeight(e.nativeEvent.layout.height)} />
           <Hero isWide={isWide} openLink={openLink} navigateTo={navigateTo} />
-          <ThesisSection />
-          <PipelineSection />
-          <ConfidenceSection />
-          <StackSection isWide={isWide} />
+          <View onLayout={(e) => handleSectionLayout('thesis', e.nativeEvent.layout.y)}>
+            <ThesisSection />
+          </View>
+          <View onLayout={(e) => handleSectionLayout('pipeline', e.nativeEvent.layout.y)}>
+            <PipelineSection />
+          </View>
+          <View onLayout={(e) => handleSectionLayout('confidence', e.nativeEvent.layout.y)}>
+            <ConfidenceSection />
+          </View>
+          <View onLayout={(e) => handleSectionLayout('stack', e.nativeEvent.layout.y)}>
+            <StackSection isWide={isWide} />
+          </View>
           <StatsSection isWide={isWide} />
           <CtaSection openLink={openLink} navigateTo={navigateTo} />
           <Footer isWide={isWide} openLink={openLink} />
@@ -171,7 +192,7 @@ export default function EnterpriseAILandingScreen() {
           <View className="flex-row items-center gap-2.5">
             <Image
               source={require('../../frontend/assets/images/logo.png')}
-              style={{ width: 90, height: 90, borderRadius: 100, marginRight: -25, }}
+              style={{ width: 90, height: 90, borderRadius: 100, marginLeft: -30, marginRight: -25, }}
               resizeMode="contain"
             />
             <Text className="font-bold text-[17px] text-[#18181B] dark:text-[#FAFAFA]">Enterprise AI</Text>
@@ -180,9 +201,15 @@ export default function EnterpriseAILandingScreen() {
           {isWide ? (
             <View className="flex-row items-center gap-7">
               {NAV_LINKS.map((l) => (
-                <Text key={l.anchor} className="text-sm font-medium text-[#71717A] dark:text-[#9C9CA6]">
-                  {l.label}
-                </Text>
+                <Pressable
+                  key={l.anchor}
+                  onPress={() => scrollToAnchor(l.anchor)}
+                  className="active:opacity-70"
+                >
+                  <Text className="text-sm font-medium text-[#71717A] dark:text-[#9C9CA6]">
+                    {l.label}
+                  </Text>
+                </Pressable>
               ))}
             </View>
           ) : null}
@@ -214,7 +241,14 @@ export default function EnterpriseAILandingScreen() {
         {!isWide && menuOpen ? (
           <View className="px-6 pb-3 border-t border-[#E4E4E7] dark:border-[#23262f]">
             {NAV_LINKS.map((l) => (
-              <Pressable key={l.anchor} onPress={() => setMenuOpen(false)} className="py-3 border-b border-[#E4E4E7] dark:border-[#23262f]">
+              <Pressable
+                key={l.anchor}
+                onPress={() => {
+                  setMenuOpen(false);
+                  scrollToAnchor(l.anchor);
+                }}
+                className="py-3 border-b border-[#E4E4E7] dark:border-[#23262f]"
+              >
                 <Text className="text-[#18181B] dark:text-[#FAFAFA] font-medium">{l.label}</Text>
               </Pressable>
             ))}
@@ -696,7 +730,7 @@ function Footer({ isWide, openLink }: { isWide: boolean; openLink: (u: string) =
     <View className="border-t border-[#E4E4E7] dark:border-[#23262f] py-8 px-6">
       <View className={`max-w-[1180px] w-full mx-auto flex-row items-center justify-between ${!isWide ? 'flex-col gap-4 items-start' : ''}`}>
         <Text className="text-xs text-[#71717A] dark:text-[#9C9CA6]">
-          Enterprise AI Architecture Demo
+          Enterprise AI
         </Text>
         <View className="flex-row items-center gap-6">
           <Pressable onPress={() => openLink(PORTFOLIO_URL)}>

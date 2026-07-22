@@ -37,9 +37,7 @@ export default function ProfileScreen() {
 
         {/* Profile Card */}
         <Card className="mb-6 items-center border border-[#E4E4E7] bg-white py-8 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-2xl">
-          <View className="mb-4 rounded-full bg-[#EEF1FF] p-5 dark:bg-[#161B33]">
-            <Feather name="user" size={40} color="#3652E3" />
-          </View>
+
           <Typography variant="h3" weight="semibold" className="mb-1 text-[#18181B] dark:text-[#FAFAFA]">
             {user?.email}
           </Typography>
@@ -49,27 +47,7 @@ export default function ProfileScreen() {
         </Card>
 
         {/* Settings Action Hub */}
-        <View className="gap-3 mb-6">
-          <TouchableOpacity activeOpacity={0.7}>
-            <Card className="flex-row items-center justify-between border border-[#E4E4E7] bg-white p-4 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-xl h-12">
-              <View className="flex-row items-center gap-3">
-                <Feather name="settings" size={18} color="#71717A" />
-                <Typography variant="body" weight="medium" className="text-[#18181B] dark:text-[#FAFAFA]">App Settings</Typography>
-              </View>
-              <Feather name="chevron-right" size={16} color="#A1A1AA" />
-            </Card>
-          </TouchableOpacity>
 
-          <TouchableOpacity activeOpacity={0.7}>
-            <Card className="flex-row items-center justify-between border border-[#E4E4E7] bg-white p-4 dark:border-[#3F3F46] dark:bg-[#27272A] rounded-xl h-12">
-              <View className="flex-row items-center gap-3">
-                <Feather name="shield" size={18} color="#71717A" />
-                <Typography variant="body" weight="medium" className="text-[#18181B] dark:text-[#FAFAFA]">Privacy & Security</Typography>
-              </View>
-              <Feather name="chevron-right" size={16} color="#A1A1AA" />
-            </Card>
-          </TouchableOpacity>
-        </View>
 
         {/* Danger Zone Sign Out Button */}
         <Button

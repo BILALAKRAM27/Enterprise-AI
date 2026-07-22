@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, KeyboardAvoidingView, Platform, ScrollView, Alert, TouchableOpacity } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, ScrollView, Alert, TouchableOpacity, Image, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -67,12 +67,17 @@ export default function RegisterScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View className="mx-auto w-full max-w-[440px] bg-white border border-[#E4E4E7] p-8 dark:bg-[#1C1E23] dark:border-[#3F3F46] rounded-2xl shadow-sm">
-          <View className="mb-8">
-            <Typography variant="h1" weight="bold" className="text-[#3652E3] dark:text-[#6E85FF] tracking-tight">
-              Create Account
-            </Typography>
+          <View className="mb-8 items-center">
+            <View className="flex-row items-center gap-2.5">
+              <Image
+                source={require('../../../frontend/assets/images/logo.png')}
+                style={{ width: 100, height: 100, borderRadius: 100, marginLeft: -30, marginRight: -30, }}
+                resizeMode="contain"
+              />
+              <Text className="font-bold text-[35px] text-[#1abdbd]">Enterprise AI</Text>
+            </View>
             <Typography variant="body" color="muted" className="mt-2 text-sm leading-relaxed">
-              Join to build your enterprise knowledge base.
+              Create an account to join and build your enterprise knowledge base.
             </Typography>
           </View>
 
@@ -114,7 +119,7 @@ export default function RegisterScreen() {
                     activeOpacity={0.7}
                     onPress={() => setShowPassword(!showPassword)}
                     style={{ position: 'absolute', right: 4, top: errors.password?.message ? 24 : 32 }}
-                    className="w-11 h-11 items-center justify-center rounded-full"
+                    className="w-12 h-6 items-center justify-center rounded-full"
                   >
                     <Feather
                       name={showPassword ? "eye-off" : "eye"}
@@ -146,7 +151,7 @@ export default function RegisterScreen() {
                     activeOpacity={0.7}
                     onPress={() => setShowConfirmPassword(!showConfirmPassword)}
                     style={{ position: 'absolute', right: 4, top: errors.confirmPassword?.message ? 24 : 32 }}
-                    className="w-11 h-11 items-center justify-center rounded-full"
+                    className="w-11 h-6 items-center justify-center rounded-full"
                   >
                     <Feather
                       name={showConfirmPassword ? "eye-off" : "eye"}
