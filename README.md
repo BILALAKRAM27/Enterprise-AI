@@ -263,20 +263,30 @@ User ──< Chat ──< Message ──< Citation >── Document
 ## 8. Frontend Structure (Expo/React Native)
 
 ```
-frontend/app/                     ← Expo Router: file path = route
-├── (auth)/login.tsx, register.tsx   → Auth screens (outside tab navigation)
-├── (tabs)/index.tsx                  → Home tab
-├── (tabs)/chat/                      → Chat list + conversation screen
-├── (tabs)/documents/                 → Document list + upload screen
-└── (tabs)/profile.tsx                → User profile
-
-frontend/services/
-├── api.ts        → Axios instance, base URL, auth header injection
-├── auth.ts        → login/register calls
-├── chat.ts         → getChats, createChat, getMessages, sendMessage
-└── document.ts     → getDocuments, uploadDocument (multipart, progress %), delete, retry, openDocument (downloads via WebBrowser)
-
-frontend/store/     → Redux Toolkit — persists auth state (JWT) across app restarts
+frontend/
+├── app/                              ← Expo Router: file path = route
+│   ├── (auth)/login.tsx, register.tsx → Auth screens (outside tab navigation)
+│   ├── (tabs)/index.tsx               → Home tab
+│   ├── (tabs)/chat/[id].tsx, index.tsx → Chat list + conversation screen
+│   ├── (tabs)/documents/index.tsx     → Document list + upload screen
+│   ├── (tabs)/profile.tsx             → User profile
+│   ├── EnterpriseAILandingScreen.tsx  → Main landing page UI component
+│   └── landing.tsx                    → Public route pointing to landing page
+├── components/                       → Reusable UI & guard components (AuthGuard, etc.)
+├── services/                         → API interaction clients using Axios
+│   ├── api.ts                         → Axios instance, base URL, auth header injection
+│   ├── auth.ts                        → login/register calls
+│   ├── chat.ts                        → getChats, createChat, getMessages, sendMessage
+│   └── document.ts                    → getDocuments, uploadDocument, delete, retry, open
+├── store/                            → Redux Toolkit auth state management
+├── utils/
+│   ├── cn.ts                          → Tailwind class merger utility
+│   ├── polyfills.js                   → Critical Hermes runtime environment polyfills
+│   ├── polyfills.ts                   → Polyfill helper
+│   └── storage.ts                     → LocalStorage abstraction
+├── index.js                          → Global React Native entry point (imports polyfills)
+├── app.json                          → App configuration, package identifiers, EAS settings
+└── eas.json                          → EAS build & submit pipeline definitions
 ```
 
 The frontend is a thin client: it uploads files, polls/displays document status, and renders chat messages with their citations — all the RAG logic lives entirely in the backend.
@@ -299,6 +309,13 @@ The frontend is a thin client: it uploads files, polls/displays document status,
 - **Background-task DB session bug (fixed)**: A comment in `services/document.py` documents a real bug that was fixed — background tasks must open their own DB session since the request-scoped one is already closed by the time they run.
 - **Vector size mismatch handling**: `qdrant_client.py` checks if an existing collection's vector size doesn't match 3072 (e.g., if you switch embedding models) and auto-recreates the collection.
 - **Graceful degradation without an API key**: If `GEMINI_API_KEY` isn't set, the app still lets you upload/chunk/store documents — it just skips embedding and returns a clear placeholder message instead of crashing.
+- **Strict User-Level Data Isolation**: Enforces tenant/user partitioning at the storage layer. Every vector point in Qdrant is tagged with uploader's `user_id` payload. Vector search queries, retrieval steps, and document/vector deletion requests strictly filter by the authenticated user's ID. PostgreSQL schema queries similarly restrict records by `user_id`.
+- **Automatic Vector Backfilling**: During server start up, a non-blocking background re-indexing task runs to verify and backfill existing ready database documents with the proper `user_id` payload in Qdrant, handling Gemini API rate limits with exponential backoffs.
+- **Expo Go / Metro Polyfill Header Injection**: Solves Hermes engine compatibility limitations (missing standard browser interfaces like `DOMException`, `PerformanceEntry`, `ReactNativeStartupTiming`, `AbortController`, `TextEncoder`, etc.) by using Metro's `serializer.getPolyfills` configuration to prepend a comprehensive polyfill header at the absolute top of the native bundle.
+- **Zero-Config Mobile Networking Strategy**: Resolves backend host URLs automatically on local mobile platforms. Prioritizes project-root `.env` `EXPO_PUBLIC_API_URL`, falls back to extracting host LAN IPs dynamically from Expo's manifest (`Constants.expoConfig.hostUri`) for physical devices in Expo Go, and falls back to `10.0.2.2` for the Android emulator.
+- **API Health & Error Classification**: Implemented startup health checking via `/api/v1/health` with a custom Axios interceptor class to map network, timeout, auth, or server failures into descriptive, user-friendly notices.
+- **Postgres Citations Cascade Delete Workaround**: Citations are manually deleted prior to deleting a document since SQL constraints would otherwise raise a `ForeignKeyViolationError` (due to missing cascade rule on SQLAlchemy relationship mappings).
+- **Expo EAS Configuration**: App has build/submit configuration for EAS pipelines, including Android package metadata in `app.json` and build profiles in `eas.json`.
 
 ---
 

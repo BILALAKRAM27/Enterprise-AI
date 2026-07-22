@@ -29,11 +29,11 @@ Modern enterprises struggle with fragmented knowledge silos. Employees waste cou
 
 ## 6. Technology Justification
 - **Backend - FastAPI:** Provides high-performance async capabilities, automatic OpenAPI validation, and fast development cycles—ideal for AI/I/O-bound applications.
-- **Frontend - React Native (Expo):** Enables cross-platform (iOS, Android, Web) development with a single codebase. NativeWind allows for rapid, consistent styling.
+- **Frontend - React Native (Expo):** Enables cross-platform (iOS, Android, Web) development with a single codebase. NativeWind allows for rapid, consistent styling. Custom Hermes polyfills resolve native runtime limits.
 - **Database - PostgreSQL:** ACID-compliant, enterprise-proven relational database for robust metadata and user management.
 - **Vector DB - Qdrant:** Highly scalable, fast, open-source vector search engine with excellent filtering capabilities for metadata-rich RAG.
 - **Orchestration - LangChain:** Speeds up prompt chaining and chunking logic, but wrapped in an abstraction layer to prevent vendor lock-in.
-- **LLM / Embeddings - OpenAI/OpenRouter:** State-of-the-art reasoning and embedding models (`text-embedding-3-small` is fast and cost-effective). OpenRouter provides fallback models.
+- **LLM / Embeddings - Google Gemini:** High-performance reasoning models and embeddings via `google-genai` SDK. Uses `gemini-embedding-001` (3072 dimensions) and a robust fallback chain starting with `gemini-3.1-flash-lite` -> `gemini-2.0-flash` -> `gemini-1.5-flash` with tenacity rate-limit retries.
 
 ## 7. High-Level Architecture
 The system follows a classic decoupled Client-Server architecture with a specialized AI service layer:
@@ -54,17 +54,23 @@ Following Clean Architecture principles:
 ### PostgreSQL (Relational)
 - **Users:** `id`, `email`, `hashed_password`, `created_at`, `updated_at`
 - **Documents:** `id`, `user_id` (uploader), `filename`, `file_type`, `status` (processing, ready, failed), `uploaded_at`
-- **DocumentChunks (Optional SQL mirror):** `id`, `document_id`, `page_number`, `chunk_text`, `chunk_index`
+- **DocumentChunks:** `id`, `document_id`, `page_number`, `chunk_text`, `chunk_index` (the core chunk text repository)
 - **Chats:** `id`, `user_id`, `title`, `created_at`, `updated_at`
 - **Messages:** `id`, `chat_id`, `role` (user/ai), `content`, `created_at`
 - **Citations:** `id`, `message_id`, `document_id`, `page_number`, `score`
 
+> [!NOTE]
+> **Delete Reference Workaround**: Since SQLAlchemy models do not cascade deletion to the `Citation` table, deleting a document requires manually deleting its referencing `Citation` records first to prevent Postgres `ForeignKeyViolationError` failures.
+
 ### Qdrant (Vector)
 - **Collection:** `enterprise_knowledge`
-- **Vectors:** `text-embedding-3-small` (1536 dimensions)
-- **Payload/Metadata:** `document_id`, `chunk_id`, `page_number`, `text_content`, `filename`
+- **Vectors:** `gemini-embedding-001` (3072 dimensions)
+- **Payload/Metadata:** `document_id`, `chunk_id`, `page_number`, `text_content`, `filename`, `user_id` (used for strict user isolation)
 
 ## 10. API Design
+
+**System Health**
+- `GET /api/v1/health` (Returns JSON status check)
 
 **Authentication**
 - `POST /api/v1/auth/register`
@@ -77,7 +83,7 @@ Following Clean Architecture principles:
 - `DELETE /api/v1/documents/{id}`
 
 **Chat**
-- `POST /api/v1/chat/completions` (Send message, get AI response)
+- `POST /api/v1/chat/{chat_id}/completions` (Send message, get RAG AI response)
 - `GET /api/v1/chat/history` (List chat sessions)
 - `GET /api/v1/chat/{chat_id}/messages` (Get messages for a session)
 
@@ -89,12 +95,16 @@ Following Clean Architecture principles:
 ```text
 enterprise-ai/
 ├── frontend/                 # React Native Expo
-│   ├── app/                  # Expo Router pages
-│   ├── components/           # Reusable UI components
+│   ├── app/                  # Expo Router pages (landing, tabs, layouts)
+│   ├── components/           # Reusable UI & guard components (AuthGuard, etc.)
 │   ├── hooks/                # Custom React hooks (TanStack Query)
-│   ├── store/                # Redux Toolkit setup
+│   ├── store/                # Redux Toolkit setup (auth state, credentials persistence)
 │   ├── services/             # Axios API calls
-│   └── utils/                # Helper functions
+│   ├── utils/                # Helper utilities and custom polyfills
+│   │   └── polyfills.js      # Global polyfills (DOMException, performance, etc.) for Hermes
+│   ├── index.js              # Entrypoint prepending Hermes polyfills
+│   ├── app.json              # App configuration, package identifiers, EAS settings
+│   └── eas.json              # Expo Application Services build configurations
 └── backend/                  # FastAPI
     ├── app/
     │   ├── api/              # Routers (auth.py, documents.py, chat.py)
@@ -132,11 +142,11 @@ enterprise-ai/
 8. API returns answer and citations to the frontend.
 
 ## 13. RAG Pipeline
-1. **Extraction:** PyMuPDF (fitz) or pdfplumber for PDFs, `python-docx` for DOCX.
-2. **Chunking:** Semantic or Recursive Character Text Splitter (~500-1000 tokens per chunk with 10% overlap).
-3. **Retrieval:** Vector search with MMR (Maximal Marginal Relevance) to ensure context diversity.
-4. **Prompting:** Strict system prompt:
-   *"You are an enterprise AI assistant. Answer the user's question using ONLY the provided context. If the answer is not contained in the context, reply 'I could not find information in the uploaded documents.' Cite your sources."*
+1. **Extraction:** PyMuPDF (fitz) for PDFs, `python-docx` for Word (.docx), and plain text parser for TXT.
+2. **Chunking:** Recursive Character Text Splitter (chunk_size=1000 characters, chunk_overlap=100 characters).
+3. **Embeddings:** Google Gemini `gemini-embedding-001` (3072-dimensional vector) via `google-genai` SDK on the stable v1 API.
+4. **Retrieval:** Semantic vector search (Cosine Distance index) with strict `user_id` metadata isolation, returning top-k (default 5) matches.
+5. **Generation**: Builds system prompt injecting retrieved contexts. Sends to Google Gemini using a fallback mechanism (`gemini-3.1-flash-lite` -> `gemini-2.0-flash` -> `gemini-1.5-flash`), with exponential backoff on 429 errors using `tenacity`.
 
 ## 14. Sequence Diagrams
 
@@ -147,14 +157,14 @@ sequenceDiagram
     participant API as FastAPI
     participant DB as PostgreSQL
     participant Qdrant as Qdrant DB
-    participant LLM as OpenAI
+    participant LLM as Gemini (Google)
 
     User->>App: Sends Question
-    App->>API: POST /chat/completions
+    App->>API: POST /chat/{chat_id}/completions
     API->>DB: Save User Message
     API->>LLM: Generate Embedding for Query
     LLM-->>API: Query Vector
-    API->>Qdrant: Search Vector (Top K)
+    API->>Qdrant: Search Vector with user_id Filter (Top K)
     Qdrant-->>API: Retrieved Chunks + Metadata
     API->>LLM: Send Prompt (Context + Query)
     LLM-->>API: AI Response + Citations
@@ -173,19 +183,19 @@ classDiagram
         +delete_document(doc_id)
     }
     class ChatService {
-        +process_query(chat_id, query)
+        +process_query(chat_id, query, user_id)
         +get_chat_history(user_id)
     }
     class RAGPipeline {
         -embedder: EmbeddingsInterface
         -retriever: VectorDBInterface
         -llm: LLMInterface
-        +generate_answer(query)
+        +generate_answer(query, user_id)
     }
     class VectorDBInterface {
         <<interface>>
         +upsert_vectors(vectors, metadata)
-        +search(query_vector, top_k)
+        +search(query_vector, user_id, top_k)
     }
     
     DocumentService --> RAGPipeline : triggers ingestion
@@ -199,9 +209,10 @@ classDiagram
 - **Database (PostgreSQL):** Amazon RDS or Supabase.
 - **Vector DB (Qdrant):** Qdrant Cloud or self-hosted Docker container.
 - **Frontend:** Expo EAS Build, distributed via TestFlight / Google Play Console or web hosting (Vercel).
+- **EAS Profile Support**: Full pipeline support using `eas.json` for managing multi-stage Expo environments (development, preview, production).
 
 ## 17. Security Considerations
-- **Data Isolation:** Implement Row-Level Security (RLS) or strictly filter by `user_id` / `tenant_id` on both Postgres and Qdrant queries.
+- **Data Isolation:** Strict multi-user data isolation has been fully implemented. Every document, chunk, chat conversation, message, and vector point in Qdrant is partitioned by `user_id`. Queries and vector lookups are strictly filtered by the authenticated user's ID to prevent cross-user data leakage.
 - **Rate Limiting:** Protect APIs against abuse using `slowapi`.
 - **Secrets Management:** Use `.env` files locally; AWS Secrets Manager / environment variables in production.
 - **Sanitization:** Sanitize all text before passing it to LLM to prevent prompt injection.
