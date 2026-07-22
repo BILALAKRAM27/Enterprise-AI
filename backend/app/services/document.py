@@ -48,6 +48,24 @@ class DocumentService:
 
                 logger.info(f"Processing document {doc_id}: {doc.filename}")
 
+                # Clean up existing database chunks and Qdrant vectors before processing to avoid duplicates
+                from app.models.document_chunk import DocumentChunk
+                from sqlalchemy import delete as sql_delete
+                await db.execute(sql_delete(DocumentChunk).where(DocumentChunk.document_id == doc_id))
+                await db.commit()
+
+                try:
+                    from app.vector_db.qdrant_client import qdrant_db
+                    from qdrant_client.models import Filter, FieldCondition, MatchValue
+                    await qdrant_db.client.delete(
+                        collection_name=qdrant_db.collection_name,
+                        points_selector=Filter(
+                            must=[FieldCondition(key="document_id", match=MatchValue(value=doc_id))]
+                        ),
+                    )
+                except Exception as q_err:
+                    logger.warning(f"Failed to delete old qdrant vectors for doc {doc_id}: {q_err}")
+
                 # 1. Parse
                 if file_type.lower() == "pdf":
                     text = DocumentParser._parse_pdf(file_path)
@@ -115,11 +133,14 @@ class DocumentService:
             except Exception as e:
                 logger.error(f"Error processing document {doc_id}: {e}")
                 try:
-                    doc = await db.get(Document, doc_id)
-                    if doc:
-                        doc.status = DocumentStatus.FAILED
-                        db.add(doc)
-                        await db.commit()
+                    # Use a fresh, clean database session to guarantee status update to FAILED
+                    async with AsyncSessionLocal() as fail_db:
+                        fail_doc = await fail_db.get(Document, doc_id)
+                        if fail_doc:
+                            fail_doc.status = DocumentStatus.FAILED
+                            fail_db.add(fail_doc)
+                            await fail_db.commit()
+                            logger.info(f"Document {doc_id} marked as FAILED in database.")
                 except Exception as inner_e:
                     logger.error(f"Failed to update document status to FAILED: {inner_e}")
             finally:

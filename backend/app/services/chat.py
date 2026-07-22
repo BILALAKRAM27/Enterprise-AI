@@ -52,3 +52,18 @@ class ChatService:
         )
         ai_msg = result.scalar_one()
         return ai_msg
+
+    @staticmethod
+    async def delete_chat(db: AsyncSession, chat_id: int, user_id: int) -> bool:
+        result = await db.execute(select(Chat).where(Chat.id == chat_id, Chat.user_id == user_id))
+        chat = result.scalar_one_or_none()
+        if not chat:
+            return False
+        
+        try:
+            await db.delete(chat)
+            await db.commit()
+            return True
+        except Exception as e:
+            await db.rollback()
+            raise e

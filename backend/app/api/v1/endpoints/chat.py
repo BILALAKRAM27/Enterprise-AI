@@ -62,3 +62,14 @@ async def get_messages(
         .order_by(Message.created_at.asc())
     )
     return result.scalars().all()
+
+@router.delete("/{chat_id}")
+async def delete_chat(
+    chat_id: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    success = await ChatService.delete_chat(db, chat_id, current_user.id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Chat not found")
+    return {"status": "success"}

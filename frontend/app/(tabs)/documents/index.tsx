@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, FlatList, RefreshControl, Alert, TouchableOpacity, Platform } from 'react-native';
+import { View, FlatList, RefreshControl, Alert, TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import * as DocumentPicker from 'expo-document-picker';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { Typography } from '../../../components/Typography';
 import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
+import { ConfirmModal } from '../../../components/ConfirmModal';
 import { Feather } from '@expo/vector-icons';
 import { format } from 'date-fns';
 
@@ -27,20 +28,45 @@ export default function DocumentsScreen() {
   const queryClient = useQueryClient();
   const [uploads, setUploads] = useState<UploadState[]>([]);
   const [retryingIds, setRetryingIds] = useState<number[]>([]);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   
+  // Deletion Modal state
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [deletingDocId, setDeletingDocId] = useState<number | null>(null);
+
   // Hover & Focus states for Web delete button
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
   const [focusedCardId, setFocusedCardId] = useState<number | null>(null);
 
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  // Poll only when there are processing documents or active uploads in processing state
   const { data: documents, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ['documents'],
     queryFn: documentService.getDocuments,
+    refetchInterval: (query) => {
+      const data = query.state.data as any[];
+      const hasProcessing = data?.some((d: any) => d.status === 'processing') || uploads.some(u => u.status === 'processing');
+      return hasProcessing ? 2000 : false;
+    }
   });
 
   const deleteMutation = useMutation({
     mutationFn: documentService.deleteDocument,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['documents'] }),
-    onError: () => Alert.alert('Error', 'Failed to delete document'),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['documents'] });
+      showToast('Document deleted successfully');
+    },
+    onError: () => {
+      showToast('Failed to delete document', 'error');
+    },
+    onSettled: () => {
+      setDeletingDocId(null);
+      setDeleteModalVisible(false);
+    }
   });
 
   const triggerSingleUpload = async (u: { id: string; filename: string; uri: string; mimeType: string }) => {
@@ -126,7 +152,7 @@ export default function DocumentsScreen() {
         triggerSingleUpload(u);
       });
     } catch (error) {
-      Alert.alert('Upload Failed', 'There was an error selecting files.');
+      showToast('There was an error selecting files.', 'error');
     }
   };
 
@@ -142,7 +168,7 @@ export default function DocumentsScreen() {
       await documentService.retryDocument(docId);
       await refetch();
     } catch (err) {
-      Alert.alert('Retry Failed', 'Could not re-trigger ingestion pipeline.');
+      showToast('Could not re-trigger ingestion pipeline.', 'error');
       // Revert cache on failure
       queryClient.setQueryData(['documents'], (oldDocs: any) =>
         oldDocs ? oldDocs.map((d: any) => (d.id === docId ? { ...d, status: 'failed' } : d)) : []
@@ -252,27 +278,29 @@ export default function DocumentsScreen() {
     const showDeleteButton = Platform.OS !== 'web' || isHovered || isFocused;
 
     return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => {
-          if (item.status === 'ready') {
-            documentService.openDocument(item.id);
-          }
-        }}
-        disabled={item.status !== 'ready'}
+      <View
         // @ts-ignore
         onMouseEnter={() => setHoveredCardId(item.id)}
         // @ts-ignore
         onMouseLeave={() => setHoveredCardId(null)}
-        // @ts-ignore
-        onFocus={() => setFocusedCardId(item.id)}
-        // @ts-ignore
-        onBlur={() => setFocusedCardId(null)}
         className="mb-3"
       >
         <Card className={`border ${item.status === 'failed' ? 'border-[#F87171] bg-[#FCEBEB]/20 dark:bg-[#301213]/10 dark:border-[#301213]' : 'border-[#E4E4E7] bg-white dark:border-[#3F3F46] dark:bg-[#27272A]'} p-4 rounded-2xl relative shadow-xs`}>
           <View className="flex-row items-start justify-between">
-            <View className="flex-1 flex-row items-center gap-3">
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                if (item.status === 'ready') {
+                  documentService.openDocument(item.id);
+                }
+              }}
+              disabled={item.status !== 'ready'}
+              // @ts-ignore
+              onFocus={() => setFocusedCardId(item.id)}
+              // @ts-ignore
+              onBlur={() => setFocusedCardId(null)}
+              className="flex-1 flex-row items-center gap-3 mr-2"
+            >
               <View className={`rounded-xl p-3 ${themeSpec.bg}`}>
                 <Feather name="file-text" size={20} color={themeSpec.color} />
               </View>
@@ -284,19 +312,15 @@ export default function DocumentsScreen() {
                   {format(new Date(item.uploaded_at), 'MMM dd, yyyy HH:mm')}
                 </Typography>
               </View>
-            </View>
+            </TouchableOpacity>
 
             {showDeleteButton && (
               <TouchableOpacity
                 activeOpacity={0.7}
                 className="h-10 w-10 items-center justify-center rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:opacity-100"
-                onFocus={() => setFocusedCardId(item.id)}
-                onBlur={() => setFocusedCardId(null)}
                 onPress={() => {
-                  Alert.alert('Delete Document', 'Are you sure you want to delete this document?', [
-                    { text: 'Cancel', style: 'cancel' },
-                    { text: 'Delete', style: 'destructive', onPress: () => deleteMutation.mutate(item.id) }
-                  ]);
+                  setDeletingDocId(item.id);
+                  setDeleteModalVisible(true);
                 }}
               >
                 <Feather name="trash-2" size={18} color="#C2281F" />
@@ -338,12 +362,28 @@ export default function DocumentsScreen() {
             </View>
           )}
         </Card>
-      </TouchableOpacity>
+      </View>
     );
   };
 
   return (
     <View className="flex-1 bg-[#FAFAFA] dark:bg-[#0B0D12]">
+      {toast && (
+        <View 
+          style={styles.toastContainer} 
+          className={toast.type === 'success' ? 'bg-[#10B981]' : 'bg-[#EF4444]'}
+        >
+          <Feather 
+            name={toast.type === 'success' ? 'check-circle' : 'alert-circle'} 
+            size={18} 
+            color="white" 
+          />
+          <Typography color="white" weight="semibold" className="text-sm">
+            {toast.message}
+          </Typography>
+        </View>
+      )}
+
       <View className="mx-auto w-full max-w-[1120px] flex-1 px-6 pb-6 pt-16 md:px-8">
         <View className="mb-6 flex-row items-center justify-between">
           <Typography variant="h1" weight="bold" className="text-[#18181B] dark:text-[#FAFAFA] tracking-tight">
@@ -396,6 +436,37 @@ export default function DocumentsScreen() {
           }
         />
       </View>
+
+      <ConfirmModal
+        visible={deleteModalVisible}
+        onClose={() => setDeleteModalVisible(false)}
+        onConfirm={() => {
+          if (deletingDocId !== null) {
+            deleteMutation.mutate(deletingDocId);
+          }
+        }}
+        title="Delete Document"
+        description="Are you sure you want to delete this document? This will remove all PostgreSQL metadata, chunks, and Qdrant vector embeddings. This action cannot be undone."
+        confirmText="Delete"
+        cancelText="Cancel"
+        loading={deleteMutation.isPending}
+        variant="destructive"
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  toastContainer: {
+    position: 'absolute',
+    top: 50,
+    left: '5%',
+    right: '5%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: 12,
+    borderRadius: 12,
+    zIndex: 9999,
+  }
+});
