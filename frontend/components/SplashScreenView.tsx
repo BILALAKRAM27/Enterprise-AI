@@ -207,8 +207,8 @@ const styles = StyleSheet.create({
     marginBottom: 56,
   },
   logo: {
-    width: 160,
-    height: 160,
+    width: 360,
+    height: 360,
   },
   dots: {
     position: 'absolute',

@@ -142,6 +142,21 @@ class Generator:
                 "at https://ai.google.dev/gemini-api/docs/rate-limits"
             )
 
+        # If the LLM output indicates no relevant info was found, do not attach citations
+        fallback_phrases = [
+            "could not find relevant information",
+            "could not find any relevant information",
+            "no relevant information",
+            "temporarily unable to generate",
+            "no documents have been uploaded",
+        ]
+        answer_lower = answer.lower()
+        if any(phrase in answer_lower for phrase in fallback_phrases):
+            return {
+                "answer": answer,
+                "citations": [],
+            }
+
         return {
             "answer": answer,
             "citations": chunks,

@@ -80,11 +80,19 @@ export default function ChatScreen() {
             </Typography>
 
             {/* DESIGN.md Signature confidence-ribbon implementation */}
-            {item.citations && item.citations.length > 0 && (
-              <View className="mt-4 border-t border-[#E4E4E7] pt-3 dark:border-[#3F3F46] w-full">
-                <Typography variant="caption" weight="semibold" className="mb-2 text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider text-[11px] font-mono">
-                  Sources & Citations:
-                </Typography>
+            {(() => {
+              const isFallbackMsg =
+                item.content?.toLowerCase().includes("could not find relevant information") ||
+                item.content?.toLowerCase().includes("no relevant information") ||
+                item.content?.toLowerCase().includes("unable to generate");
+
+              if (isFallbackMsg || !item.citations || item.citations.length === 0) return null;
+
+              return (
+                <View className="mt-4 border-t border-[#E4E4E7] pt-3 dark:border-[#3F3F46] w-full">
+                  <Typography variant="caption" weight="semibold" className="mb-2 text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider text-[11px] font-mono">
+                    Sources & Citations:
+                  </Typography>
                 {item.citations.map((cite: any, i: number) => {
                   const rawScore = cite.score !== undefined && cite.score !== null ? cite.score : 85;
                   const confidence = rawScore <= 1 ? Math.round(rawScore * 100) : Math.round(rawScore);
@@ -109,7 +117,8 @@ export default function ChatScreen() {
                   );
                 })}
               </View>
-            )}
+              );
+            })()}
           </View>
         </View>
       </View>
