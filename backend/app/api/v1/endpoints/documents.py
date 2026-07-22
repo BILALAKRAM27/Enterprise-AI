@@ -144,7 +144,10 @@ async def delete_document(
         await qdrant_db.client.delete(
             collection_name=qdrant_db.collection_name,
             points_selector=Filter(
-                must=[FieldCondition(key="document_id", match=MatchValue(value=document_id))]
+                must=[
+                    FieldCondition(key="document_id", match=MatchValue(value=document_id)),
+                    FieldCondition(key="user_id", match=MatchValue(value=current_user.id))
+                ]
             ),
         )
     except Exception:

@@ -41,7 +41,7 @@ async def chat_completion(
     if not chat or chat.user_id != current_user.id:
         raise HTTPException(status_code=404, detail="Chat not found")
         
-    ai_msg = await ChatService.process_query(db, chat_id, msg_in.content)
+    ai_msg = await ChatService.process_query(db, chat_id, msg_in.content, current_user.id)
     return ai_msg
 
 @router.get("/{chat_id}/messages", response_model=List[MessageResponse])

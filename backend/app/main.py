@@ -28,10 +28,12 @@ async def on_startup():
     # Initialize Qdrant collection
     try:
         from app.vector_db.qdrant_client import qdrant_db
+        from app.services.document import DocumentService
         await qdrant_db.init_collection()
         logger.info("Qdrant collection ready.")
+        await DocumentService.reindex_all_documents()
     except Exception as e:
-        logger.warning(f"Qdrant init skipped (may not be needed yet): {e}")
+        logger.warning(f"Qdrant init / reindex skipped: {e}")
 
 app.add_exception_handler(APIException, api_exception_handler)
 app.add_exception_handler(Exception, global_exception_handler)

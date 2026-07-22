@@ -105,14 +105,16 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     padding: 24,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 5,
+    ...Platform.select({
+      web: { boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.15)' } as any,
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 12,
+        elevation: 5,
+      },
+    }),
   },
   iconContainer: {
     width: 56,

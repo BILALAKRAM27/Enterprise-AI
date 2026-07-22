@@ -1,6 +1,6 @@
 from qdrant_client import AsyncQdrantClient
 from qdrant_client.http.models import Distance, VectorParams
-from qdrant_client.models import PointStruct
+from qdrant_client.models import PointStruct, Filter, FieldCondition, MatchValue
 from app.core.config import settings
 from loguru import logger
 
@@ -50,17 +50,26 @@ class QdrantDBClient:
             points=points,
         )
 
-    async def search(self, query_vector: list[float], limit: int = 5) -> list:
+    async def search(self, query_vector: list[float], user_id: int, limit: int = 5) -> list:
         """
-        Search for nearest vectors.
+        Search for nearest vectors, strictly isolated by user_id.
         Tries the modern query_points() API first (qdrant-client >=1.7.x),
         then falls back to the legacy search() API for older versions.
         """
+        query_filter = Filter(
+            must=[
+                FieldCondition(
+                    key="user_id",
+                    match=MatchValue(value=user_id),
+                )
+            ]
+        )
         try:
             # Modern API: query_points (qdrant-client >= 1.7.x)
             response = await self.client.query_points(
                 collection_name=self.collection_name,
                 query=query_vector,
+                query_filter=query_filter,
                 limit=limit,
                 with_payload=True,
             )
@@ -71,6 +80,7 @@ class QdrantDBClient:
                 results = await self.client.search(
                     collection_name=self.collection_name,
                     query_vector=query_vector,
+                    query_filter=query_filter,
                     limit=limit,
                     with_payload=True,
                 )

@@ -5365,3 +5365,304 @@ DETAIL:  Key (id)=(3) is still referenced from table "citation".
 2026-07-22 12:31:00.315 | INFO     | app.services.document:process_document_background:103 - Document 57: generating embeddings...
 2026-07-22 12:31:03.362 | INFO     | app.services.document:process_document_background:121 - Document 57: 13 vectors upserted to Qdrant.
 2026-07-22 12:31:03.377 | INFO     | app.services.document:process_document_background:131 - Document 57 processed successfully — status: READY
+2026-07-22 12:46:21.210 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 12:46:25.074 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 12:46:25.150 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 12:46:25.339 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 12:46:25.400 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 12:46:25.401 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 14:14:02.676 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 14:14:05.436 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 14:14:05.495 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 14:14:05.664 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 14:14:05.690 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 14:14:05.691 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 15:49:29.366 | INFO     | app.services.document:process_document_background:49 - Processing document 60: (L2)Existence of God and Oneness of Allah (SWT.pdf
+2026-07-22 15:49:29.554 | INFO     | app.services.document:process_document_background:49 - Processing document 58: (L6)type Tauheed and Shirk.pdf
+2026-07-22 15:49:29.562 | INFO     | app.services.document:process_document_background:49 - Processing document 59: (L4)Proof for Existence of God (B).pdf
+2026-07-22 15:49:29.899 | INFO     | app.services.document:process_document_background:49 - Processing document 62: (L5)Purpose of Life.pdf
+2026-07-22 15:49:29.904 | INFO     | app.services.document:process_document_background:49 - Processing document 61: (L1)Importance of Religion.pdf
+2026-07-22 15:49:29.908 | INFO     | app.services.document:process_document_background:49 - Processing document 63: (L7)Quran and Its Proof.pdf
+2026-07-22 15:49:29.931 | INFO     | app.services.document:process_document_background:49 - Processing document 64: (L10)Surah Al-Asr.pdf
+2026-07-22 15:49:29.942 | INFO     | app.services.document:process_document_background:49 - Processing document 65: (L8)Surah Fatihah.pdf
+2026-07-22 15:49:29.960 | INFO     | app.services.document:process_document_background:49 - Processing document 66: (L3)Proof for Existence of God (A).pdf
+2026-07-22 15:49:30.394 | INFO     | app.services.document:process_document_background:85 - Document 59: 6 chunks created.
+2026-07-22 15:49:30.624 | INFO     | app.services.document:process_document_background:85 - Document 58: 20 chunks created.
+2026-07-22 15:49:30.726 | INFO     | app.services.document:process_document_background:85 - Document 60: 4 chunks created.
+2026-07-22 15:49:30.852 | INFO     | app.services.document:process_document_background:85 - Document 62: 8 chunks created.
+2026-07-22 15:49:31.008 | INFO     | app.services.document:process_document_background:85 - Document 61: 9 chunks created.
+2026-07-22 15:49:31.098 | INFO     | app.services.document:process_document_background:85 - Document 63: 6 chunks created.
+2026-07-22 15:49:31.225 | INFO     | app.services.document:process_document_background:85 - Document 64: 10 chunks created.
+2026-07-22 15:49:31.502 | INFO     | app.services.document:process_document_background:85 - Document 65: 28 chunks created.
+2026-07-22 15:49:31.611 | INFO     | app.services.document:process_document_background:85 - Document 66: 7 chunks created.
+2026-07-22 15:49:31.628 | INFO     | app.services.document:process_document_background:103 - Document 59: generating embeddings...
+2026-07-22 15:49:34.336 | INFO     | app.services.document:process_document_background:103 - Document 60: generating embeddings...
+2026-07-22 15:49:35.212 | INFO     | app.services.document:process_document_background:103 - Document 62: generating embeddings...
+2026-07-22 15:49:36.817 | INFO     | app.services.document:process_document_background:103 - Document 58: generating embeddings...
+2026-07-22 15:49:38.848 | INFO     | app.services.document:process_document_background:103 - Document 65: generating embeddings...
+2026-07-22 15:49:41.024 | ERROR    | app.services.document:process_document_background:134 - Error processing document 59: 
+2026-07-22 15:49:41.098 | INFO     | app.services.document:process_document_background:121 - Document 60: 4 vectors upserted to Qdrant.
+2026-07-22 15:49:41.109 | INFO     | app.services.document:process_document_background:121 - Document 62: 8 vectors upserted to Qdrant.
+2026-07-22 15:49:41.121 | INFO     | app.services.document:process_document_background:121 - Document 58: 20 vectors upserted to Qdrant.
+2026-07-22 15:49:41.124 | INFO     | app.services.document:process_document_background:131 - Document 62 processed successfully — status: READY
+2026-07-22 15:49:41.125 | INFO     | app.services.document:process_document_background:131 - Document 60 processed successfully — status: READY
+2026-07-22 15:49:41.133 | INFO     | app.services.document:process_document_background:121 - Document 65: 28 vectors upserted to Qdrant.
+2026-07-22 15:49:41.145 | INFO     | app.services.document:process_document_background:131 - Document 58 processed successfully — status: READY
+2026-07-22 15:49:41.157 | INFO     | app.services.document:process_document_background:49 - Processing document 67: (L9)Surah Al-Baqarah.pdf
+2026-07-22 15:49:41.166 | INFO     | app.services.document:process_document_background:131 - Document 65 processed successfully — status: READY
+2026-07-22 15:49:41.170 | INFO     | app.services.document:process_document_background:103 - Document 63: generating embeddings...
+2026-07-22 15:49:42.636 | INFO     | app.services.document:process_document_background:103 - Document 64: generating embeddings...
+2026-07-22 15:49:44.324 | INFO     | app.services.document:process_document_background:103 - Document 61: generating embeddings...
+2026-07-22 15:49:45.969 | INFO     | app.services.document:process_document_background:121 - Document 63: 6 vectors upserted to Qdrant.
+2026-07-22 15:49:46.113 | INFO     | app.services.document:process_document_background:85 - Document 67: 14 chunks created.
+2026-07-22 15:49:46.125 | ERROR    | app.services.document:process_document_background:134 - Error processing document 61: 
+2026-07-22 15:49:46.139 | INFO     | app.services.document:process_document_background:131 - Document 63 processed successfully — status: READY
+2026-07-22 15:49:46.147 | INFO     | app.services.document:process_document_background:103 - Document 66: generating embeddings...
+2026-07-22 15:49:47.715 | INFO     | app.services.document:process_document_background:121 - Document 64: 10 vectors upserted to Qdrant.
+2026-07-22 15:49:47.725 | INFO     | app.services.document:process_document_background:143 - Document 59 marked as FAILED in database.
+2026-07-22 15:49:47.731 | INFO     | app.services.document:process_document_background:131 - Document 64 processed successfully — status: READY
+2026-07-22 15:49:47.742 | INFO     | app.services.document:process_document_background:103 - Document 67: generating embeddings...
+2026-07-22 15:49:48.167 | ERROR    | app.services.document:process_document_background:134 - Error processing document 67: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 12.457387988s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-embedding-1.0', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}
+2026-07-22 15:49:48.192 | INFO     | app.services.document:process_document_background:121 - Document 66: 7 vectors upserted to Qdrant.
+2026-07-22 15:49:48.202 | INFO     | app.services.document:process_document_background:143 - Document 61 marked as FAILED in database.
+2026-07-22 15:49:48.211 | INFO     | app.services.document:process_document_background:143 - Document 67 marked as FAILED in database.
+2026-07-22 15:49:48.217 | INFO     | app.services.document:process_document_background:131 - Document 66 processed successfully — status: READY
+2026-07-22 15:49:56.936 | INFO     | app.services.document:process_document_background:49 - Processing document 67: (L9)Surah Al-Baqarah.pdf
+2026-07-22 15:49:57.187 | INFO     | app.services.document:process_document_background:85 - Document 67: 14 chunks created.
+2026-07-22 15:49:57.226 | INFO     | app.services.document:process_document_background:103 - Document 67: generating embeddings...
+2026-07-22 15:49:58.628 | ERROR    | app.services.document:process_document_background:134 - Error processing document 67: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 2.020115361s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-embedding-1.0', 'location': 'global'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '2s'}]}}
+2026-07-22 15:49:58.640 | INFO     | app.services.document:process_document_background:143 - Document 67 marked as FAILED in database.
+2026-07-22 15:51:12.663 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 15:51:15.606 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 15:53:46.125 | INFO     | app.services.document:process_document_background:49 - Processing document 59: (L4)Proof for Existence of God (B).pdf
+2026-07-22 15:53:46.292 | INFO     | app.services.document:process_document_background:85 - Document 59: 6 chunks created.
+2026-07-22 15:53:46.313 | INFO     | app.services.document:process_document_background:103 - Document 59: generating embeddings...
+2026-07-22 15:53:48.792 | INFO     | app.services.document:process_document_background:121 - Document 59: 6 vectors upserted to Qdrant.
+2026-07-22 15:53:48.800 | INFO     | app.services.document:process_document_background:131 - Document 59 processed successfully — status: READY
+2026-07-22 15:53:54.093 | INFO     | app.services.document:process_document_background:49 - Processing document 67: (L9)Surah Al-Baqarah.pdf
+2026-07-22 15:53:54.288 | INFO     | app.services.document:process_document_background:85 - Document 67: 14 chunks created.
+2026-07-22 15:53:54.305 | INFO     | app.services.document:process_document_background:103 - Document 67: generating embeddings...
+2026-07-22 15:53:56.942 | INFO     | app.services.document:process_document_background:121 - Document 67: 14 vectors upserted to Qdrant.
+2026-07-22 15:53:56.951 | INFO     | app.services.document:process_document_background:131 - Document 67 processed successfully — status: READY
+2026-07-22 15:53:56.971 | INFO     | app.services.document:process_document_background:49 - Processing document 61: (L1)Importance of Religion.pdf
+2026-07-22 15:53:57.304 | INFO     | app.services.document:process_document_background:85 - Document 61: 9 chunks created.
+2026-07-22 15:53:57.319 | INFO     | app.services.document:process_document_background:103 - Document 61: generating embeddings...
+2026-07-22 15:53:58.948 | INFO     | app.services.document:process_document_background:121 - Document 61: 9 vectors upserted to Qdrant.
+2026-07-22 15:53:58.956 | INFO     | app.services.document:process_document_background:131 - Document 61 processed successfully — status: READY
+2026-07-22 15:57:12.788 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 15:57:17.872 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 15:57:17.965 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 15:57:18.166 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 15:57:18.202 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 15:57:18.204 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 15:57:36.043 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 15:57:48.805 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 15:57:51.342 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 15:57:51.382 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 15:57:51.495 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 15:57:51.520 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 15:57:51.521 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:00:13.750 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:00:16.101 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:00:16.144 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:00:16.267 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:00:16.289 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:00:16.291 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:00:23.812 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:00:26.093 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:00:26.133 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:00:26.271 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:00:26.352 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:00:26.353 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:00:33.332 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:00:35.678 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:00:35.721 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:00:35.827 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:00:35.850 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:00:35.851 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:00:43.421 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:00:46.414 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:00:46.455 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:00:46.559 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:00:46.581 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:00:46.582 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:00:54.347 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:00:56.599 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:00:56.644 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:00:56.746 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:00:56.769 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:00:56.771 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:01:07.369 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:01:09.713 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:01:09.761 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:01:09.875 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:01:09.894 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:01:09.896 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:01:52.252 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:01:53.130 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:03:22.759 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:03:24.361 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:03:34.063 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:03:34.925 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:03:52.985 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:03:53.865 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:05:03.712 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:05:04.812 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:05:32.844 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:05:33.900 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:06:18.542 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:06:19.693 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:06:29.222 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:06:30.225 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:10:30.016 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:10:31.651 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:11:32.004 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:11:34.382 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:11:34.423 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:11:34.539 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:11:34.561 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:11:34.563 | INFO     | app.main:on_startup:32 - Qdrant collection ready.
+2026-07-22 16:11:42.756 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:11:45.434 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:11:45.480 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:11:45.586 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:11:45.609 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:11:45.612 | INFO     | app.main:on_startup:33 - Qdrant collection ready.
+2026-07-22 16:11:45.733 | INFO     | app.services.document:reindex_all_documents:180 - Reindex: Syncing 25 existing documents to Qdrant with user_id payload...
+2026-07-22 16:11:47.301 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 2 (test.txt) re-indexed with user_id=3.
+2026-07-22 16:11:48.792 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 3 (Bilal Akram Resume.pdf) re-indexed with user_id=2.
+2026-07-22 16:11:49.316 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 4 (openrouter_guide.txt) re-indexed with user_id=3.
+2026-07-22 16:11:49.853 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 10 (project_info.txt) re-indexed with user_id=9.
+2026-07-22 16:11:50.484 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 11 (project_info.txt) re-indexed with user_id=10.
+2026-07-22 16:11:50.986 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 12 (project_info.txt) re-indexed with user_id=11.
+2026-07-22 16:11:51.551 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 13 (project_info.txt) re-indexed with user_id=12.
+2026-07-22 16:11:52.051 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 14 (project_info.txt) re-indexed with user_id=13.
+2026-07-22 16:11:54.612 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 15 (Samsung_Galaxy_Terra_Innovation_Challenge.docx) re-indexed with user_id=2.
+2026-07-22 16:11:55.319 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 16 (cover letter.pdf) re-indexed with user_id=14.
+2026-07-22 16:11:56.376 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 17 ((L1)Ideology of Pakistan.pdf) re-indexed with user_id=14.
+2026-07-22 16:11:58.036 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 54 ((L7)India Act 1935 and Lahore Resolution.pdf) re-indexed with user_id=15.
+2026-07-22 16:12:00.388 | INFO     | app.services.document:reindex_all_documents:217 - Reindex: Document 55 ((L15)Constitution of 1956.pdf) re-indexed with user_id=15.
+2026-07-22 16:12:00.835 | ERROR    | app.services.document:reindex_all_documents:220 - Reindex error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 59.836317187s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '59s'}]}}
+2026-07-22 16:13:27.576 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:13:28.582 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:13:36.392 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:13:39.009 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:13:39.061 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:13:39.204 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:13:39.224 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:13:39.225 | INFO     | app.main:on_startup:33 - Qdrant collection ready.
+2026-07-22 16:13:39.341 | INFO     | app.services.document:reindex_all_documents:180 - Reindex: Syncing 25 existing documents to Qdrant with user_id payload...
+2026-07-22 16:13:40.387 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 2 (test.txt) re-indexed with user_id=3.
+2026-07-22 16:13:42.376 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 3 (Bilal Akram Resume.pdf) re-indexed with user_id=2.
+2026-07-22 16:13:43.396 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 4 (openrouter_guide.txt) re-indexed with user_id=3.
+2026-07-22 16:13:44.503 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 10 (project_info.txt) re-indexed with user_id=9.
+2026-07-22 16:13:45.491 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 11 (project_info.txt) re-indexed with user_id=10.
+2026-07-22 16:13:46.501 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 12 (project_info.txt) re-indexed with user_id=11.
+2026-07-22 16:13:47.620 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 13 (project_info.txt) re-indexed with user_id=12.
+2026-07-22 16:13:48.627 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 14 (project_info.txt) re-indexed with user_id=13.
+2026-07-22 16:13:51.611 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 15 (Samsung_Galaxy_Terra_Innovation_Challenge.docx) re-indexed with user_id=2.
+2026-07-22 16:13:52.858 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 16 (cover letter.pdf) re-indexed with user_id=14.
+2026-07-22 16:13:54.421 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 17 ((L1)Ideology of Pakistan.pdf) re-indexed with user_id=14.
+2026-07-22 16:13:56.719 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 54 ((L7)India Act 1935 and Lahore Resolution.pdf) re-indexed with user_id=15.
+2026-07-22 16:13:59.353 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 55 ((L15)Constitution of 1956.pdf) re-indexed with user_id=15.
+2026-07-22 16:14:00.308 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 56. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:14:13.625 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 56. Pausing 12s before retry (attempt 2/3)...
+2026-07-22 16:14:26.288 | ERROR    | app.services.document:reindex_all_documents:231 - Failed to reindex document 56 ((L16)Constitution of 1962.pdf): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 34.401634924s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}
+2026-07-22 16:14:26.860 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 57. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:14:41.721 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 57 ((L5)Minto-Morley Reforms and Lucknow Pact.pdf) re-indexed with user_id=15.
+2026-07-22 16:14:43.323 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 62 ((L5)Purpose of Life.pdf) re-indexed with user_id=18.
+2026-07-22 16:14:44.711 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 60 ((L2)Existence of God and Oneness of Allah (SWT.pdf) re-indexed with user_id=18.
+2026-07-22 16:14:47.226 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 58 ((L6)type Tauheed and Shirk.pdf) re-indexed with user_id=18.
+2026-07-22 16:14:48.276 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 65. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:15:01.232 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 65. Pausing 12s before retry (attempt 2/3)...
+2026-07-22 16:15:14.483 | ERROR    | app.services.document:reindex_all_documents:231 - Failed to reindex document 65 ((L8)Surah Fatihah.pdf): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 46.191704579s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}
+2026-07-22 16:15:14.865 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 63. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:15:28.048 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 63. Pausing 12s before retry (attempt 2/3)...
+2026-07-22 16:16:12.101 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-22 16:16:14.602 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-22 16:16:14.662 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-22 16:16:14.852 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-22 16:16:14.881 | INFO     | app.vector_db.qdrant_client:init_collection:43 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-22 16:16:14.882 | INFO     | app.main:on_startup:33 - Qdrant collection ready.
+2026-07-22 16:16:15.065 | INFO     | app.services.document:reindex_all_documents:180 - Reindex: Syncing 25 existing documents to Qdrant with user_id payload...
+2026-07-22 16:16:15.945 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 2 (test.txt) re-indexed with user_id=3.
+2026-07-22 16:16:17.876 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 3 (Bilal Akram Resume.pdf) re-indexed with user_id=2.
+2026-07-22 16:16:18.930 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 4 (openrouter_guide.txt) re-indexed with user_id=3.
+2026-07-22 16:16:20.006 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 10 (project_info.txt) re-indexed with user_id=9.
+2026-07-22 16:16:21.167 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 11 (project_info.txt) re-indexed with user_id=10.
+2026-07-22 16:16:22.193 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 12 (project_info.txt) re-indexed with user_id=11.
+2026-07-22 16:16:23.213 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 13 (project_info.txt) re-indexed with user_id=12.
+2026-07-22 16:16:24.362 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 14 (project_info.txt) re-indexed with user_id=13.
+2026-07-22 16:16:25.426 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 15. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:16:40.272 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 15 (Samsung_Galaxy_Terra_Innovation_Challenge.docx) re-indexed with user_id=2.
+2026-07-22 16:16:41.527 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 16 (cover letter.pdf) re-indexed with user_id=14.
+2026-07-22 16:16:43.016 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 17 ((L1)Ideology of Pakistan.pdf) re-indexed with user_id=14.
+2026-07-22 16:16:45.252 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 54 ((L7)India Act 1935 and Lahore Resolution.pdf) re-indexed with user_id=15.
+2026-07-22 16:16:47.787 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 55 ((L15)Constitution of 1956.pdf) re-indexed with user_id=15.
+2026-07-22 16:16:50.198 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 56 ((L16)Constitution of 1962.pdf) re-indexed with user_id=15.
+2026-07-22 16:16:51.146 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 57. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:17:04.407 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 57. Pausing 12s before retry (attempt 2/3)...
+2026-07-22 16:17:17.232 | ERROR    | app.services.document:reindex_all_documents:231 - Failed to reindex document 57 ((L5)Minto-Morley Reforms and Lucknow Pact.pdf): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 43.450233615s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}
+2026-07-22 16:17:18.785 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 62 ((L5)Purpose of Life.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:20.879 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 60 ((L2)Existence of God and Oneness of Allah (SWT.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:21.863 | WARNING  | app.services.document:reindex_all_documents:228 - Reindex rate limited on doc 58. Pausing 12s before retry (attempt 1/3)...
+2026-07-22 16:17:36.259 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 58 ((L6)type Tauheed and Shirk.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:39.008 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 65 ((L8)Surah Fatihah.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:41.026 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 63 ((L7)Quran and Its Proof.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:43.171 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 64 ((L10)Surah Al-Asr.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:45.262 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 66 ((L3)Proof for Existence of God (A).pdf) re-indexed with user_id=18.
+2026-07-22 16:17:47.197 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 59 ((L4)Proof for Existence of God (B).pdf) re-indexed with user_id=18.
+2026-07-22 16:17:49.518 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 67 ((L9)Surah Al-Baqarah.pdf) re-indexed with user_id=18.
+2026-07-22 16:17:51.654 | INFO     | app.services.document:reindex_all_documents:222 - Reindex: Document 61 ((L1)Importance of Religion.pdf) re-indexed with user_id=18.
+2026-07-22 16:19:47.580 | INFO     | app.services.document:process_document_background:49 - Processing document 69: (L1)Ideology of Pakistan.pdf
+2026-07-22 16:19:47.588 | INFO     | app.services.document:process_document_background:49 - Processing document 68: (L3)Historical Background of Pakistan.pdf
+2026-07-22 16:19:47.645 | INFO     | app.services.document:process_document_background:49 - Processing document 70: (L4)Simla Deputation and All India Muslim League.pdf
+2026-07-22 16:19:47.806 | INFO     | app.services.document:process_document_background:85 - Document 69: 6 chunks created.
+2026-07-22 16:19:47.917 | INFO     | app.services.document:process_document_background:85 - Document 68: 21 chunks created.
+2026-07-22 16:19:47.922 | INFO     | app.services.document:process_document_background:49 - Processing document 71: (L2)Nationalism and Two Nation Theory.pdf
+2026-07-22 16:19:48.090 | INFO     | app.services.document:process_document_background:85 - Document 71: 7 chunks created.
+2026-07-22 16:19:48.094 | INFO     | app.services.document:process_document_background:103 - Document 69: generating embeddings...
+2026-07-22 16:19:50.001 | INFO     | app.services.document:process_document_background:85 - Document 70: 4 chunks created.
+2026-07-22 16:19:50.073 | INFO     | app.services.document:process_document_background:103 - Document 71: generating embeddings...
+2026-07-22 16:19:51.644 | INFO     | app.services.document:process_document_background:103 - Document 68: generating embeddings...
+2026-07-22 16:19:53.751 | INFO     | app.services.document:process_document_background:122 - Document 69: 6 vectors upserted to Qdrant.
+2026-07-22 16:19:53.772 | INFO     | app.services.document:process_document_background:132 - Document 69 processed successfully — status: READY
+2026-07-22 16:19:53.781 | INFO     | app.services.document:process_document_background:122 - Document 71: 7 vectors upserted to Qdrant.
+2026-07-22 16:19:53.787 | INFO     | app.services.document:process_document_background:103 - Document 70: generating embeddings...
+2026-07-22 16:19:54.813 | INFO     | app.services.document:process_document_background:122 - Document 68: 21 vectors upserted to Qdrant.
+2026-07-22 16:19:54.821 | INFO     | app.services.document:process_document_background:132 - Document 71 processed successfully — status: READY
+2026-07-22 16:19:54.830 | INFO     | app.services.document:process_document_background:122 - Document 70: 4 vectors upserted to Qdrant.
+2026-07-22 16:19:54.909 | INFO     | app.services.document:process_document_background:132 - Document 68 processed successfully — status: READY
+2026-07-22 16:19:54.914 | INFO     | app.services.document:process_document_background:132 - Document 70 processed successfully — status: READY
+2026-07-22 16:21:28.371 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:21:29.334 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:21:55.290 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:21:57.318 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:23:02.430 | INFO     | app.services.document:process_document_background:49 - Processing document 72: (L4)Proof for Existence of God (B).pdf
+2026-07-22 16:23:02.435 | INFO     | app.services.document:process_document_background:49 - Processing document 73: (L1)Importance of Religion.pdf
+2026-07-22 16:23:02.652 | INFO     | app.services.document:process_document_background:85 - Document 72: 6 chunks created.
+2026-07-22 16:23:02.798 | INFO     | app.services.document:process_document_background:85 - Document 73: 9 chunks created.
+2026-07-22 16:23:02.810 | INFO     | app.services.document:process_document_background:49 - Processing document 74: (L2)Existence of God and Oneness of Allah (SWT.pdf
+2026-07-22 16:23:02.813 | INFO     | app.services.document:process_document_background:103 - Document 72: generating embeddings...
+2026-07-22 16:23:04.836 | INFO     | app.services.document:process_document_background:122 - Document 72: 6 vectors upserted to Qdrant.
+2026-07-22 16:23:04.933 | INFO     | app.services.document:process_document_background:85 - Document 74: 4 chunks created.
+2026-07-22 16:23:04.943 | INFO     | app.services.document:process_document_background:103 - Document 73: generating embeddings...
+2026-07-22 16:23:06.616 | INFO     | app.services.document:process_document_background:132 - Document 72 processed successfully — status: READY
+2026-07-22 16:23:06.626 | INFO     | app.services.document:process_document_background:103 - Document 74: generating embeddings...
+2026-07-22 16:23:07.519 | INFO     | app.services.document:process_document_background:122 - Document 73: 9 vectors upserted to Qdrant.
+2026-07-22 16:23:07.544 | INFO     | app.services.document:process_document_background:49 - Processing document 75: (L3)Proof for Existence of God (A).pdf
+2026-07-22 16:23:07.555 | INFO     | app.services.document:process_document_background:122 - Document 74: 4 vectors upserted to Qdrant.
+2026-07-22 16:23:07.563 | INFO     | app.services.document:process_document_background:132 - Document 74 processed successfully — status: READY
+2026-07-22 16:23:07.697 | INFO     | app.services.document:process_document_background:85 - Document 75: 7 chunks created.
+2026-07-22 16:23:07.707 | INFO     | app.services.document:process_document_background:103 - Document 75: generating embeddings...
+2026-07-22 16:23:09.252 | INFO     | app.services.document:process_document_background:132 - Document 73 processed successfully — status: READY
+2026-07-22 16:23:09.285 | INFO     | app.services.document:process_document_background:122 - Document 75: 7 vectors upserted to Qdrant.
+2026-07-22 16:23:09.307 | INFO     | app.services.document:process_document_background:132 - Document 75 processed successfully — status: READY
+2026-07-22 16:23:28.162 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:23:29.271 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:23:51.481 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:23:53.073 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:24:23.383 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:24:25.090 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite
+2026-07-22 16:24:39.646 | INFO     | app.rag.generator:_generate_with_fallback:84 - Attempting generation with model: gemini-3.1-flash-lite
+2026-07-22 16:24:41.219 | INFO     | app.rag.generator:_generate_with_fallback:86 - Generation succeeded with model: gemini-3.1-flash-lite

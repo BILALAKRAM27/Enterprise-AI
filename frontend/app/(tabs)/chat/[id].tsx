@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { View, FlatList, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, Platform, TouchableOpacity, Image } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { chatService } from '../../../services/chat';
@@ -8,6 +8,7 @@ import { Typography } from '../../../components/Typography';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
 import { Feather } from '@expo/vector-icons';
+
 
 export default function ChatScreen() {
   const { id } = useLocalSearchParams();
@@ -62,9 +63,14 @@ export default function ChatScreen() {
           {/* Avatar branding layer (User/Ink vs Assistant/Signal) */}
           <View className={`rounded-full p-2.5 h-10 w-10 items-center justify-center shrink-0 ${isUser ? 'bg-[#EEF1FF] dark:bg-[#161B33]' : 'bg-[#E6FBF9] dark:bg-[#0E2624]'}`}>
             {isUser ? (
-              <Feather name="user" size={16} color="#3652E3" />
+              <Feather name="user" size={16} color="#1e3190ff" />
             ) : (
-              <Feather name={"sparkles" as any} size={16} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
+              // <Feather name="cpu" size={16} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
+              <Image
+                source={require('../../../assets/images/logo.png')}
+                style={{ width: 65, height: 65, borderRadius: 100 }}
+                resizeMode="contain"
+              />
             )}
           </View>
 

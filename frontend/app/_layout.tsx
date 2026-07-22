@@ -1,79 +1,84 @@
+// app/_layout.tsx
+//
+// Single, clean root layout.
+// Providers → AuthGuard → Stack (with all screens).
+// AuthGuard internally shows SplashScreenView while the JWT bootstrap runs,
+// then navigates to the correct screen and renders the Stack.
+
+import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux';
+import { store } from '../store';
+import { AuthGuard } from '../components/AuthGuard';
 
 export {
-  // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Keep the native splash visible until fonts finish loading.
 SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
-}
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Provider } from 'react-redux';
-import { store } from '../store';
-import { Slot } from 'expo-router';
-import { AuthGuard } from '../components/AuthGuard';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,  // 5 minutes — data is considered fresh
-      gcTime: 1000 * 60 * 10,    // 10 minutes — keep inactive queries in cache
-      retry: 1,                   // only retry once on failure
-      refetchOnWindowFocus: false, // don't refetch on every focus event
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 10,
+      retry: 1,
+      refetchOnWindowFocus: false,
     },
   },
 });
 
-function RootLayoutNav() {
+export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [loaded, error] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (error) throw error;
+  }, [error]);
+
+  // Hide the native splash the moment fonts are ready.
+  // Our JS SplashScreenView takes over visually from this point.
+  useEffect(() => {
+    if (loaded) SplashScreen.hideAsync();
+  }, [loaded]);
+
+  // While fonts are loading the native splash screen is still showing.
+  if (!loaded) return null;
 
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          {/*
+            AuthGuard renders SplashScreenView while the JWT bootstrap runs.
+            Once done it hands off to children (the Stack).
+          */}
           <AuthGuard>
-            <Slot />
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="landing" options={{ animation: 'fade' }} />
+              <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+              <Stack.Screen name="(auth)" options={{ animation: 'slide_from_bottom' }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
           </AuthGuard>
         </ThemeProvider>
       </QueryClientProvider>
     </Provider>
   );
 }
-

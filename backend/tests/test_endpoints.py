@@ -38,3 +38,23 @@ async def test_chat_deletion(db_session: AsyncSession):
 
     result_msg = await db_session.execute(select(Message).where(Message.id == message.id))
     assert result_msg.scalar_one_or_none() is None
+
+
+@pytest.mark.asyncio
+async def test_user_isolation_retriever(monkeypatch):
+    from app.rag.retriever import Retriever
+    from app.vector_db.qdrant_client import qdrant_db
+
+    called_filter = None
+
+    async def mock_search(query_vector, user_id, limit=5):
+        nonlocal called_filter
+        called_filter = user_id
+        return []
+
+    monkeypatch.setattr(qdrant_db, "search", mock_search)
+    
+    # Test that user_id is passed down to qdrant search correctly
+    await Retriever.get_relevant_chunks("test query", user_id=42)
+    assert called_filter == 42
+

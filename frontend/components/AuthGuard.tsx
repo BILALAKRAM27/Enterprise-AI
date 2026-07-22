@@ -1,10 +1,17 @@
-import { useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+// components/AuthGuard.tsx
+//
+// Bootstraps the JWT on app start, shows the animated splash screen while
+// doing so, then navigates to the correct route:
+//   valid token   → /(tabs)
+//   no/bad token  → /landing
+
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter, useSegments } from 'expo-router';
 import { useAppSelector, useAppDispatch } from '../hooks/store';
 import { storage } from '../utils/storage';
 import { setCredentials, setLoading, logout } from '../store/slices/authSlice';
 import { authService } from '../services/auth';
+import { SplashScreenView } from './SplashScreenView';
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
@@ -12,17 +19,20 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const segments = useSegments();
   const router = useRouter();
 
+  // Controls whether the JS splash overlay is still visible.
+  // Stays true until the exit animation finishes.
+  const [showSplash, setShowSplash] = useState(true);
+
+  // ── Token bootstrap ──────────────────────────────────────────────────────
   useEffect(() => {
     const bootstrapAsync = async () => {
       try {
         const token = await storage.getItemAsync('access_token');
         if (token) {
-          // Verify the token is still valid by fetching the current user
           const user = await authService.getCurrentUser();
           dispatch(setCredentials({ user, token }));
         }
       } catch {
-        // Token is expired or invalid — clear it and force re-login
         await storage.deleteItemAsync('access_token');
         dispatch(logout());
       } finally {
@@ -33,23 +43,30 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     bootstrapAsync();
   }, []);
 
+  // ── Route guard ───────────────────────────────────────────────────────────
+  // Only navigate after: (1) auth check complete AND (2) splash animation done
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || showSplash) return;
 
-    const inAuthGroup = segments[0] === '(auth)';
+    const currentSegment = segments[0] as string | undefined;
+    const isPublicRoute =
+      currentSegment === '(auth)' || currentSegment === 'landing';
 
-    if (!isAuthenticated && !inAuthGroup) {
-      router.replace('/(auth)/login');
-    } else if (isAuthenticated && inAuthGroup) {
+    if (!isAuthenticated && !isPublicRoute) {
+      router.replace('/landing');
+    } else if (isAuthenticated && isPublicRoute) {
       router.replace('/(tabs)');
     }
-  }, [isAuthenticated, isLoading, segments]);
+  }, [isAuthenticated, isLoading, segments, showSplash]);
 
-  if (isLoading) {
+  // Show the animated splash screen while bootstrapping.
+  // `ready` triggers the exit animation; when it finishes we unmount the splash.
+  if (showSplash) {
     return (
-      <View className="flex-1 items-center justify-center bg-slate-50 dark:bg-slate-900">
-        <ActivityIndicator size="large" color="#6366f1" />
-      </View>
+      <SplashScreenView
+        ready={!isLoading}
+        onAnimationComplete={() => setShowSplash(false)}
+      />
     );
   }
 

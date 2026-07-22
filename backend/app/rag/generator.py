@@ -101,9 +101,9 @@ class Generator:
 
         raise last_error  # type: ignore[misc]
 
-    async def generate_answer(self, query: str) -> dict:
-        # 1. Retrieve relevant chunks from Qdrant
-        chunks = await Retriever.get_relevant_chunks(query)
+    async def generate_answer(self, query: str, user_id: int) -> dict:
+        # 1. Retrieve relevant chunks from Qdrant, filtered by user_id
+        chunks = await Retriever.get_relevant_chunks(query, user_id=user_id)
 
         # 2. Build context string
         context_text = ""

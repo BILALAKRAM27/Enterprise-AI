@@ -15,15 +15,15 @@ class ChatService:
         return db_chat
 
     @staticmethod
-    async def process_query(db: AsyncSession, chat_id: int, query: str) -> Message:
+    async def process_query(db: AsyncSession, chat_id: int, query: str, user_id: int) -> Message:
         # Save user message
         user_msg = Message(chat_id=chat_id, role=MessageRole.USER, content=query)
         db.add(user_msg)
         await db.commit()
         await db.refresh(user_msg)
         
-        # Run RAG Pipeline
-        rag_result = await generator.generate_answer(query)
+        # Run RAG Pipeline (strictly isolated by user_id)
+        rag_result = await generator.generate_answer(query, user_id=user_id)
         
         # Save AI message
         ai_msg = Message(chat_id=chat_id, role=MessageRole.AI, content=rag_result["answer"])

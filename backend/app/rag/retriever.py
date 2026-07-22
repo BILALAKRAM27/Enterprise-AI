@@ -5,9 +5,9 @@ from loguru import logger
 
 class Retriever:
     @staticmethod
-    async def get_relevant_chunks(query: str, top_k: int = 5) -> list:
+    async def get_relevant_chunks(query: str, user_id: int, top_k: int = 5) -> list:
         """
-        Retrieve the most relevant document chunks for a query.
+        Retrieve the most relevant document chunks for a query, isolated by user_id.
         Returns an empty list if embeddings are not configured or Qdrant is unavailable.
         """
         if not embedder.is_configured():
@@ -16,7 +16,7 @@ class Retriever:
 
         try:
             query_vector = embedder.embed_query(query)
-            results = await qdrant_db.search(query_vector=query_vector, limit=top_k)
+            results = await qdrant_db.search(query_vector=query_vector, user_id=user_id, limit=top_k)
             chunks = []
             for res in results:
                 chunks.append({
