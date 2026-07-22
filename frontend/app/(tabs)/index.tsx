@@ -71,7 +71,7 @@ export default function DashboardScreen() {
         <View className="mb-8 overflow-hidden rounded-2xl bg-[#E6FBF9] border border-[#B9EFEA] p-5 dark:bg-[#0E2624] dark:border-[#1B4C48]">
           <View className="flex-row items-start gap-3">
             <View className="rounded-lg bg-[#0EA5A5]/10 p-2 dark:bg-[#2DD4C6]/10">
-              <Feather name={"sparkles" as any} size={18} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
+              <Feather name="star" size={18} className="text-[#0EA5A5] dark:text-[#2DD4C6]" />
             </View>
             <View className="flex-1">
               <Typography variant="body" weight="semibold" className="text-[#0B8383] dark:text-[#5CE8DB]">

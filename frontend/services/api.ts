@@ -9,14 +9,17 @@ import { storage } from '../utils/storage';
  * - Physical device: set EXPO_PUBLIC_API_URL in a .env file at the project root
  */
 const getBaseUrl = (): string => {
-  // Allow override via environment variable for physical device testing
   const envUrl = process.env.EXPO_PUBLIC_API_URL;
-  if (envUrl) return `${envUrl}/api/v1`;
 
-  if (Platform.OS === 'android') {
-    return 'http://10.0.2.2:8000/api/v1';
+  if (envUrl) {
+    return `${envUrl}/api/v1`;
   }
-  return 'http://localhost:8000/api/v1';
+
+  if (Platform.OS === "android") {
+    return "http://10.0.2.2:8000/api/v1"; // Android Emulator fallback
+  }
+
+  return "http://localhost:8000/api/v1"; // Web/iOS simulator fallback
 };
 
 export const BASE_URL = getBaseUrl();

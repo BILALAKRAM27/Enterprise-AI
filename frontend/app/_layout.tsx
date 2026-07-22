@@ -5,6 +5,7 @@
 // AuthGuard internally shows SplashScreenView while the JWT bootstrap runs,
 // then navigates to the correct screen and renders the Stack.
 
+import '../utils/polyfills';
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
