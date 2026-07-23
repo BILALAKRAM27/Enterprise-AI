@@ -5888,3 +5888,9 @@ DETAIL:  Key (id)=(3) is still referenced from table "citation".
 2026-07-23 00:17:04.590 | INFO     | app.main:on_startup:26 - Database schema initialized.
 2026-07-23 00:17:04.649 | INFO     | app.vector_db.qdrant_client:init_collection:55 - Qdrant collection 'enterprise_knowledge' already exists.
 2026-07-23 00:17:04.650 | INFO     | app.main:on_startup:33 - Qdrant collection ready.
+2026-07-23 00:17:12.123 | INFO     | app.rag.embeddings:__init__:26 - Embedder initialized via google-genai SDK (model: gemini-embedding-001, endpoint: v1).
+2026-07-23 00:17:15.612 | INFO     | app.rag.generator:__init__:44 - LLM Generator initialized via google-genai SDK (models: ['gemini-3.1-flash-lite', 'gemini-2.0-flash', 'gemini-1.5-flash'], endpoint: v1).
+2026-07-23 00:17:15.685 | INFO     | app.main:on_startup:23 - Initializing database schema...
+2026-07-23 00:17:22.542 | INFO     | app.main:on_startup:26 - Database schema initialized.
+2026-07-23 00:17:22.594 | INFO     | app.vector_db.qdrant_client:init_collection:55 - Qdrant collection 'enterprise_knowledge' already exists.
+2026-07-23 00:17:22.594 | INFO     | app.main:on_startup:33 - Qdrant collection ready.

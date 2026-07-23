@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Menu, ArrowRight } from 'lucide-react-native';
+import { Menu, ArrowRight, Feather } from 'lucide-react-native';
 import Svg, { Path } from 'react-native-svg';
 
 import { useReducedMotion, useTokens, RevealProvider, Reveal, useScrollRevealController } from '../hooks/hooks';
@@ -719,6 +719,25 @@ function CtaSection({ openLink, navigateTo }: { openLink: (u: string) => void; n
           <Pressable onPress={() => openLink(SETUP_URL)} className="px-[18px] py-[10px] rounded-[10px] border border-[#D4D4D8] dark:border-[#33363f] active:opacity-70">
             <Text className="text-sm font-semibold text-[#18181B] dark:text-[#FAFAFA]">Setup Guide</Text>
           </Pressable>
+          <Pressable
+            onPress={() =>
+              openLink(
+                "https://github.com/BILALAKRAM27/Enterprise-AI/releases/download/v1.0.0/application-ae8e9929-0bd4-4909-81bb-e6de6b3f960c.apk"
+              )
+            }
+            className="flex-row items-center gap-2 px-[18px] py-[10px] rounded-[10px] border border-[#D4D4D8] dark:border-[#33363f] active:opacity-70"
+          >
+            <Image
+              source={require("../../frontend/assets/images/android.png")}
+              className="w-8 h-8"
+              style={{ width: 32, height: 32 }}
+              resizeMode="contain"
+            />
+
+            <Text className="text-sm font-semibold text-[#18181B] dark:text-[#FAFAFA]">
+              Get the App
+            </Text>
+          </Pressable>
         </View>
       </Reveal>
     </View>
@@ -734,10 +753,10 @@ function Footer({ isWide, openLink }: { isWide: boolean; openLink: (u: string) =
         </Text>
         <View className="flex-row items-center gap-6">
           <Pressable onPress={() => openLink(PORTFOLIO_URL)}>
-            <Text className="text-xs text-[#71717A] dark:text-[#9C9CA6]">Portfolio ↗</Text>
+            <Text className="text-xs text-[#1abdbd]">Portfolio ↗</Text>
           </Pressable>
           <Pressable onPress={() => openLink(REPO_URL)}>
-            <Text className="text-xs text-[#71717A] dark:text-[#9C9CA6]">GitHub ↗</Text>
+            <Text className="text-xs text-[#1abdbd]">GitHub ↗</Text>
           </Pressable>
         </View>
       </View>

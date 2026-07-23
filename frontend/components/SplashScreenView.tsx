@@ -95,7 +95,6 @@ export function SplashScreenView({
   return (
     <Animated.View style={[styles.container, { backgroundColor: bg, opacity: screenOpacity }]}>
 
-
       {/* Logo */}
       <Animated.View
         style={[
@@ -200,6 +199,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 360,
     height: 360,
+    marginBottom: -100,
   },
   dots: {
     position: 'absolute',
