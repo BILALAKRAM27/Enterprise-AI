@@ -44,7 +44,7 @@ console.log(`[API Network Service] Resolved Base URL: ${BASE_URL} (Platform: ${P
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 30000, // 30s timeout
+  timeout: 90000, // 90s — accommodates Render free-tier cold-start (30-50s) + RAG generation time
   headers: {
     'Content-Type': 'application/json',
   },

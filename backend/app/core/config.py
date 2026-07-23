@@ -1,11 +1,17 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator, ValidationInfo
-from typing import Optional, Any
+from typing import Optional, Any, List
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Enterprise Knowledge AI Assistant"
     API_V1_STR: str = "/api/v1"
-    
+
+    # CORS — comma-separated list of allowed origins.
+    # Set CORS_ORIGINS on Render once your Vercel URL is known, e.g.:
+    #   CORS_ORIGINS=https://your-app.vercel.app,https://enterprise-ai-2ec4.onrender.com
+    # Defaults to wildcard "*" so local dev and the initial deploy work out of the box.
+    CORS_ORIGINS: str = "*"
+
     # Security
     SECRET_KEY: str = "supersecretkey"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days

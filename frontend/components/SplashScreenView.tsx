@@ -94,16 +94,7 @@ export function SplashScreenView({
 
   return (
     <Animated.View style={[styles.container, { backgroundColor: bg, opacity: screenOpacity }]}>
-      {/* Ambient glow behind logo */}
-      <Animated.View
-        style={[
-          styles.glow,
-          {
-            backgroundColor: glowColor,
-            opacity: glowOpacity,
-          },
-        ]}
-      />
+
 
       {/* Logo */}
       <Animated.View

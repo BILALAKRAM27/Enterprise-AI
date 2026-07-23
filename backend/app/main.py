@@ -39,9 +39,17 @@ async def on_startup():
 app.add_exception_handler(APIException, api_exception_handler)
 app.add_exception_handler(Exception, global_exception_handler)
 
+# Build CORS origins list from settings.
+# "*" stays as a single wildcard; comma-separated URLs are split into a list.
+_cors_origins: list = (
+    ["*"]
+    if settings.CORS_ORIGINS.strip() == "*"
+    else [o.strip() for o in settings.CORS_ORIGINS.split(",") if o.strip()]
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
