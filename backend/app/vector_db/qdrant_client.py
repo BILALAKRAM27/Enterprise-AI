@@ -7,14 +7,26 @@ from loguru import logger
 
 class QdrantDBClient:
     def __init__(self):
-        self.client = AsyncQdrantClient(
-            host=settings.QDRANT_HOST,
-            port=settings.QDRANT_PORT,
-            api_key=settings.QDRANT_API_KEY or None,
-            https=False,
-            prefer_grpc=False,
-        )
+        host = settings.QDRANT_HOST
+
+        # Qdrant Cloud returns a full HTTPS URL; the AsyncQdrantClient
+        # requires `url=` in that case.  For local Docker we use
+        # the separate `host= / port=` params as before.
+        if host.startswith("http://") or host.startswith("https://"):
+            self.client = AsyncQdrantClient(
+                url=host,
+                api_key=settings.QDRANT_API_KEY or None,
+            )
+        else:
+            self.client = AsyncQdrantClient(
+                host=host,
+                port=settings.QDRANT_PORT,
+                api_key=settings.QDRANT_API_KEY or None,
+                https=False,
+                prefer_grpc=False,
+            )
         self.collection_name = "enterprise_knowledge"
+
 
     async def init_collection(self):
         """Create the Qdrant collection if it doesn't already exist."""
