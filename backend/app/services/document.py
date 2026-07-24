@@ -114,7 +114,8 @@ class DocumentService:
                                     "chunk_index": chunk.chunk_index,
                                     "text_content": chunk.chunk_text,
                                     "filename": doc.filename,
-                                    "user_id": doc.user_id
+                                    "user_id": doc.user_id,
+                                    "page_number": chunk.page_number
                                 }
                             )
                         )
@@ -215,6 +216,7 @@ class DocumentService:
                                             "text_content": chunk.chunk_text,
                                             "filename": doc.filename,
                                             "user_id": doc.user_id,
+                                            "page_number": chunk.page_number
                                         }
                                     )
                                 )

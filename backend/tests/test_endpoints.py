@@ -43,6 +43,7 @@ async def test_chat_deletion(db_session: AsyncSession):
 @pytest.mark.asyncio
 async def test_user_isolation_retriever(monkeypatch):
     from app.rag.retriever import Retriever
+    from app.rag.embeddings import embedder
     from app.vector_db.qdrant_client import qdrant_db
 
     called_filter = None
@@ -52,9 +53,12 @@ async def test_user_isolation_retriever(monkeypatch):
         called_filter = user_id
         return []
 
+    monkeypatch.setattr(embedder, "is_configured", lambda: True)
+    monkeypatch.setattr(embedder, "embed_query", lambda text: [0.1] * 3072)
     monkeypatch.setattr(qdrant_db, "search", mock_search)
     
     # Test that user_id is passed down to qdrant search correctly
     await Retriever.get_relevant_chunks("test query", user_id=42)
     assert called_filter == 42
+
 

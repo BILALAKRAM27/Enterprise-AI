@@ -1,6 +1,6 @@
 from qdrant_client import AsyncQdrantClient
 from qdrant_client.http.models import Distance, VectorParams
-from qdrant_client.models import PointStruct, Filter, FieldCondition, MatchValue
+from qdrant_client.models import PointStruct, Filter, FieldCondition, MatchValue, PayloadSchemaType
 from app.core.config import settings
 from loguru import logger
 
@@ -27,16 +27,14 @@ class QdrantDBClient:
             )
         self.collection_name = "enterprise_knowledge"
 
-
     async def init_collection(self):
-        """Create the Qdrant collection if it doesn't already exist."""
+        """Create the Qdrant collection and required payload indexes if they don't already exist."""
         try:
             exists = await self.client.collection_exists(self.collection_name)
             if exists:
                 try:
                     info = await self.client.get_collection(self.collection_name)
                     vectors_config = info.config.params.vectors
-                    # If it's a single vector config, it will have a .size attribute
                     current_size = getattr(vectors_config, "size", None)
                     if current_size is not None and current_size != 3072:
                         logger.info(f"Qdrant collection size mismatch ({current_size} != 3072). Recreating...")
@@ -50,11 +48,53 @@ class QdrantDBClient:
                     collection_name=self.collection_name,
                     vectors_config=VectorParams(size=3072, distance=Distance.COSINE),
                 )
-                logger.info(f"Qdrant collection '{self.collection_name}' created (size=3072).")
+                logger.info(f"Qdrant collection '{self.collection_name}' created (size=3072, distance=Cosine).")
             else:
                 logger.info(f"Qdrant collection '{self.collection_name}' already exists.")
+
+            # Phase 2: Create required payload indexes idempotently
+            await self.ensure_payload_indexes()
+
+            # Phase 7: Log complete startup verification
+            info = await self.client.get_collection(self.collection_name)
+            indexed_fields = list((getattr(info, "payload_schema", {}) or {}).keys())
+            logger.info(
+                f"✓ Qdrant initialization verified: collection='{self.collection_name}', "
+                f"vector_dim=3072, payload_indexes={indexed_fields}"
+            )
         except Exception as e:
-            logger.warning(f"Qdrant collection init failed: {e}")
+            logger.error(f"Qdrant collection init failed: {e}")
+            raise e
+
+    async def ensure_payload_indexes(self):
+        """Ensure all required payload indexes exist on the collection idempotently."""
+        required_indexes = {
+            "user_id": PayloadSchemaType.INTEGER,
+            "document_id": PayloadSchemaType.INTEGER,
+            "chunk_id": PayloadSchemaType.INTEGER,
+            "page_number": PayloadSchemaType.INTEGER,
+        }
+        try:
+            collection_info = await self.client.get_collection(self.collection_name)
+            existing_schema = getattr(collection_info, "payload_schema", {}) or {}
+
+            for field_name, field_schema in required_indexes.items():
+                if field_name not in existing_schema:
+                    try:
+                        await self.client.create_payload_index(
+                            collection_name=self.collection_name,
+                            field_name=field_name,
+                            field_schema=field_schema,
+                        )
+                        logger.info(f"✓ Created payload index for field '{field_name}' ({field_schema}).")
+                    except Exception as idx_err:
+                        # Log warning if index already being created or error occurred
+                        logger.warning(f"Payload index creation note for '{field_name}': {idx_err}")
+                else:
+                    logger.info(f"✓ Payload index for field '{field_name}' already present.")
+        except Exception as e:
+            logger.error(f"Failed ensuring payload indexes: {e}")
+            raise e
 
     async def upsert_vectors(self, points: list):
         await self.client.upsert(
@@ -98,11 +138,12 @@ class QdrantDBClient:
                 )
                 return results
             except Exception as e:
-                logger.warning(f"Qdrant search failed: {e}")
-                return []
+                logger.error(f"Qdrant search failed: {e}")
+                raise RuntimeError(f"Qdrant search failed: {e}") from e
         except Exception as e:
-            logger.warning(f"Qdrant search failed: {e}")
-            return []
+            logger.error(f"Qdrant search failed: {e}")
+            raise RuntimeError(f"Qdrant search failed: {e}") from e
 
 
 qdrant_db = QdrantDBClient()
+

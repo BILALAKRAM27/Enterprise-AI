@@ -17,6 +17,7 @@ from tenacity import (
     wait_exponential,
 )
 
+from fastapi import HTTPException
 from app.core.config import settings
 from app.rag.retriever import Retriever
 from loguru import logger
@@ -57,7 +58,7 @@ class Generator:
             "You are an enterprise AI knowledge assistant. "
             "Answer the user's question using ONLY the provided context. "
             "If the context is empty or does not contain the answer, say: "
-            "'I could not find relevant information in the uploaded documents.' "
+            "'I could not find relevant information in your uploaded documents.' "
             "Always cite the document filename when referencing source material."
         )
 
@@ -102,10 +103,26 @@ class Generator:
         raise last_error  # type: ignore[misc]
 
     async def generate_answer(self, query: str, user_id: int) -> dict:
-        # 1. Retrieve relevant chunks from Qdrant, filtered by user_id
-        chunks = await Retriever.get_relevant_chunks(query, user_id=user_id)
+        # Phase 6: 1. Retrieve relevant chunks from Qdrant, strictly isolated by user_id.
+        # If vector storage / embedding infrastructure fails, propagate HTTP 500 error.
+        try:
+            chunks = await Retriever.get_relevant_chunks(query, user_id=user_id)
+        except Exception as err:
+            logger.error(f"Vector search/retrieval pipeline failed for user_id={user_id}: {err}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"Knowledge retrieval service failed: {err}"
+            ) from err
 
-        # 2. Build context string
+        # Phase 6: 2. If retrieval succeeds cleanly but no relevant chunks exist, return exact fallback message
+        if not chunks:
+            logger.info(f"Retrieval returned 0 chunks for user_id={user_id}. Skipping LLM generation.")
+            return {
+                "answer": "I could not find relevant information in your uploaded documents.",
+                "citations": [],
+            }
+
+        # 3. Build context string
         context_text = ""
         for i, chunk in enumerate(chunks):
             context_text += (
@@ -113,25 +130,22 @@ class Generator:
                 f"{chunk.get('text_content', '')}\n"
             )
 
-        # 3. If LLM not configured, return a helpful error
+        # 4. If LLM not configured, raise 500 error
         if not self._configured:
-            return {
-                "answer": (
-                    "The AI language model is not configured. "
-                    "Please set GEMINI_API_KEY in backend/.env and restart the server."
-                ),
-                "citations": chunks,
-            }
+            raise HTTPException(
+                status_code=500,
+                detail="The AI language model is not configured. Please set GEMINI_API_KEY in backend/.env."
+            )
 
-        # 4. Build prompt
+        # 5. Build prompt
         full_prompt = (
             self.system_prompt
             + "\n\nContext:\n"
-            + (context_text or "No documents have been uploaded yet.")
+            + context_text
             + f"\n\nUser question: {query}"
         )
 
-        # 5. Generate response (with fallback + retry)
+        # 6. Generate response (with fallback + retry)
         try:
             answer = await self._generate_with_fallback(full_prompt)
         except Exception as e:
@@ -164,3 +178,4 @@ class Generator:
 
 
 generator = Generator()
+

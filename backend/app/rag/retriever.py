@@ -7,12 +7,12 @@ class Retriever:
     @staticmethod
     async def get_relevant_chunks(query: str, user_id: int, top_k: int = 5) -> list:
         """
-        Retrieve the most relevant document chunks for a query, isolated by user_id.
-        Returns an empty list if embeddings are not configured or Qdrant is unavailable.
+        Retrieve the most relevant document chunks for a query, strictly isolated by user_id.
+        Raises an exception if embedding or Qdrant search encounters an infrastructure failure.
         """
         if not embedder.is_configured():
-            logger.warning("Retriever: embedder not configured — returning empty chunks.")
-            return []
+            logger.error("Retriever error: embedder not configured.")
+            raise RuntimeError("Embeddings service is not configured (GEMINI_API_KEY missing).")
 
         try:
             query_vector = embedder.embed_query(query)
@@ -29,5 +29,6 @@ class Retriever:
                 })
             return chunks
         except Exception as e:
-            logger.error(f"Retriever error: {e}")
-            return []
+            logger.error(f"Retriever error for user_id={user_id}: {e}")
+            raise e
+

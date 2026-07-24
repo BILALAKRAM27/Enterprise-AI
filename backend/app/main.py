@@ -25,16 +25,16 @@ async def on_startup():
         await conn.run_sync(base.Base.metadata.create_all)
     logger.info("Database schema initialized.")
 
-    # Initialize Qdrant collection
+    # Initialize Qdrant collection and payload indexes
     try:
         from app.vector_db.qdrant_client import qdrant_db
         from app.services.document import DocumentService
         await qdrant_db.init_collection()
-        logger.info("Qdrant collection ready.")
+        logger.info("✓ Qdrant collection and payload indexes ready.")
         import asyncio
-        # asyncio.create_task(DocumentService.reindex_all_documents())
+        asyncio.create_task(DocumentService.reindex_all_documents())
     except Exception as e:
-        logger.warning(f"Qdrant init / reindex skipped: {e}")
+        logger.error(f"Qdrant init / reindex failed on startup: {e}")
 
 app.add_exception_handler(APIException, api_exception_handler)
 app.add_exception_handler(Exception, global_exception_handler)
